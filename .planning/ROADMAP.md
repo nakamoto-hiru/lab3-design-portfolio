@@ -24,7 +24,7 @@
 | 1. Foundation | 3/3 | Complete | 2026-03-02 |
 | 2. Layout & Content | 4/4 | Complete | 2026-03-02 |
 | 3. Animation Layer | 3/3 | Complete | 2026-03-02 |
-| 4. Polish & Distribution | 0/2 | Not started | - |
+| 4. Polish & Distribution | 1/2 | In progress | - |
 
 ---
 
@@ -119,7 +119,7 @@ Plans:
 **Plans:** 2 plans
 
 Plans:
-- [ ] 04-01-PLAN.md -- SEO data layer, favicon, React 19 runtime title tags for all pages
+- [x] 04-01-PLAN.md -- SEO data layer, favicon, React 19 runtime title tags for all pages
 - [ ] 04-02-PLAN.md -- Wire vite-plugin-react-meta-map for build-time OG HTML, verify production build
 
 ---

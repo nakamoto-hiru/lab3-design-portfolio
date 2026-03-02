@@ -58,9 +58,9 @@ Requirements for the rebuild. Each maps to roadmap phases.
 
 ### SEO & Meta
 
-- [ ] **META-01**: Correct browser tab title and favicon
-- [ ] **META-02**: Open Graph meta tags for home, about, and contact pages
-- [ ] **META-03**: Per-project OG meta tags (title, description, image from frontmatter)
+- [x] **META-01**: Correct browser tab title and favicon
+- [x] **META-02**: Open Graph meta tags for home, about, and contact pages
+- [x] **META-03**: Per-project OG meta tags (title, description, image from frontmatter)
 
 ### Theme
 
@@ -139,9 +139,9 @@ Deferred to future release. Tracked but not in current roadmap.
 | ANIM-06 | Phase 3 | Complete |
 | ANIM-07 | Phase 3 | Complete |
 | ANIM-08 | Phase 3 | Complete |
-| META-01 | Phase 4 | Pending |
-| META-02 | Phase 4 | Pending |
-| META-03 | Phase 4 | Pending |
+| META-01 | Phase 4 | Complete |
+| META-02 | Phase 4 | Complete |
+| META-03 | Phase 4 | Complete |
 
 **Coverage:**
 - v1 requirements: 38 total

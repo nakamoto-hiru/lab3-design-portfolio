@@ -2,23 +2,23 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: Phase 3 (Animation Layer) — complete
-current_plan: 03-03 (complete)
+current_phase: Phase 4 (Polish & Distribution) — in progress
+current_plan: 04-01 (complete)
 status: in_progress
-stopped_at: Completed 03-03-PLAN.md — hover micro-interactions (ProjectCard, Navbar). Phase 3 complete. Ready for Phase 4.
-last_updated: "2026-03-02T08:50:05Z"
+stopped_at: Completed 04-01-PLAN.md — SEO data layer, favicon, React 19 title tags. Ready for 04-02.
+last_updated: "2026-03-02T09:17:18Z"
 progress:
   total_phases: 4
   completed_phases: 3
-  total_plans: 10
-  completed_plans: 10
-  percent: 100
+  total_plans: 12
+  completed_plans: 11
+  percent: 92
 ---
 
 # Project State: Slug Portfolio v2
 
 **Last updated:** 2026-03-02
-**Session:** Execute phase 03-animation-layer, plan 03
+**Session:** Execute phase 04-polish-distribution, plan 01
 
 ---
 
@@ -34,12 +34,12 @@ progress:
 
 ## Current Position
 
-**Current phase:** Phase 3 (Animation Layer) — complete
-**Current plan:** 03-03 (complete)
+**Current phase:** Phase 4 (Polish & Distribution) — in progress
+**Current plan:** 04-01 (complete)
 **Status:** In progress
 
 **Progress:**
-[██████████] 100% (10/10 plans complete)
+[█████████░] 92% (11/12 plans complete)
 Phase 1 [Foundation]          [x] Complete (3/3 plans done)
   [x] 01-01 Theme, packages, folder structure
   [x] 01-02 Animation variants, AnimatedSection, useScrollLock
@@ -53,9 +53,11 @@ Phase 3 [Animation Layer]     [x] Complete (3/3 plans done)
   [x] 03-01 Animation infrastructure (MotionConfig, page transitions, Portal modal)
   [x] 03-02 Staggered scroll-reveal, hero parallax
   [x] 03-03 Hover micro-interactions
-Phase 4 [Polish & Distribution] [ ] Not started
+Phase 4 [Polish & Distribution] [ ] In progress (1/2 plans done)
+  [x] 04-01 SEO data layer, favicon, React 19 title tags
+  [ ] 04-02 Wire vite-plugin-react-meta-map, verify production build
 
-**Overall:** ~100% complete (Phases 1-3 done, ready for Phase 4)
+**Overall:** ~92% complete (11/12 plans done, 1 remaining in Phase 4)
 
 ---
 
@@ -76,6 +78,7 @@ Phase 4 [Polish & Distribution] [ ] Not started
 | Phase 03-animation-layer P01 | 4min | 2 tasks | 5 files |
 | Phase 03-animation-layer P02 | 2min | 2 tasks | 2 files |
 | Phase 03-animation-layer P03 | 1min | 2 tasks | 2 files |
+| Phase 04-polish-distribution P01 | 3min | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -112,6 +115,9 @@ Phase 4 [Polish & Distribution] [ ] Not started
 - **Grid isolation:** IMPLEMENTED — `isolate` class on grid container prevents animated card stacking contexts from leaking into the hero's fixed stacking context.
 - **Hover micro-interaction scale values:** IMPLEMENTED — ProjectCard uses scale 1.015 (not larger) because big surfaces amplify scale changes. Navbar text uses x: 2px shift. Both subtle by design.
 - **CSS + motion coexistence:** CSS `transition-colors` and motion `whileHover` operate on different properties and coexist without conflict. Applied in both ProjectCard (group-hover arrow) and Navbar (color transition + x-shift).
+- **SEO data layer:** IMPLEMENTED — `src/seo/siteMetadata.ts` centralizes SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE. `src/seo/pageMetaMap.ts` exports 7-route PageMetaData array for build-time HTML. `src/seo/PageTemplate.tsx` is the HTML template for vite-plugin-react-meta-map.
+- **React 19 native title:** IMPLEMENTED — Each page component renders exactly one `<title>` JSX element. React 19 hoists it to `<head>` automatically. No react-helmet or custom hook needed. AboutPage and ContactPage wrapped in Fragments.
+- **Favicon:** IMPLEMENTED — SVG favicon at `public/favicon.svg` with accent color `#4c48ff` and "SM" initials. Referenced in both `index.html` and `PageTemplate.tsx`.
 
 ### Known Risks (from research)
 
@@ -124,7 +130,7 @@ Phase 4 [Polish & Distribution] [ ] Not started
 ### Open Questions
 
 - ~~Tailwind typography plugin v4 compatibility~~ RESOLVED: Used `prose` (not `prose-invert`) with custom color tokens via prose modifier classes. Works correctly with dark theme.
-- OG tag implementation approach for Phase 4: neither `react-helmet` nor Vite HTML plugin deeply researched. Verify before committing to one approach.
+- ~~OG tag implementation approach for Phase 4~~ RESOLVED: Using `vite-plugin-react-meta-map` for build-time HTML with OG tags (Plan 04-01 created the data layer; Plan 04-02 wires the plugin). React 19 native `<title>` for runtime browser tab titles.
 
 ### Todos
 
@@ -140,9 +146,9 @@ Phase 4 [Polish & Distribution] [ ] Not started
 1. Read this STATE.md file first
 2. Read `.planning/ROADMAP.md` for phase structure
 3. Check which phase is current (see "Current Position" above)
-4. Phase 3 is complete. Continue with Phase 4 (Polish & Distribution).
+4. Phase 4 is in progress. Continue with Plan 04-02 (wire vite-plugin-react-meta-map, verify production build).
 
-**Stopped at:** Completed 03-03-PLAN.md — hover micro-interactions (ProjectCard, Navbar). Phase 3 Animation Layer complete. Ready for Phase 4.
+**Stopped at:** Completed 04-01-PLAN.md — SEO data layer (siteMetadata, pageMetaMap, PageTemplate), favicon, React 19 native title tags on all pages. Ready for 04-02.
 
 ### File Index
 
