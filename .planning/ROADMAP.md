@@ -22,7 +22,7 @@
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-03-02 |
-| 2. Layout & Content | 0/? | Not started | - |
+| 2. Layout & Content | 0/4 | Planned | - |
 | 3. Animation Layer | 0/? | Not started | - |
 | 4. Polish & Distribution | 0/? | Not started | - |
 
@@ -69,7 +69,13 @@ Plans:
   4. Submitting the contact form with a valid email sends the message via Formspree and shows a success confirmation; submitting with an empty required field shows an inline validation error
   5. The project modal opens via `?project=slug` query param and closes without a page reload; modal content matches the project's frontmatter data
 
-**Plans**: TBD
+**Plans:** 4 plans
+
+Plans:
+- [ ] 02-01-PLAN.md -- Install packages, activate typography plugin, migrate home page to content loader data
+- [ ] 02-02-PLAN.md -- Build CaseStudyPage with markdown rendering, add route, update Navbar and ProjectModal
+- [ ] 02-03-PLAN.md -- Migrate AboutPage to markdown, wire Formspree contact form
+- [ ] 02-04-PLAN.md -- Responsive audit and visual verification across all breakpoints
 
 ---
 
@@ -157,4 +163,4 @@ Plans:
 ---
 
 *Roadmap created: 2026-03-02*
-*Last updated: 2026-03-02 — Phase 1 complete (3/3 plans)*
+*Last updated: 2026-03-02 — Phase 2 planned (4 plans in 3 waves)*
