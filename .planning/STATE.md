@@ -17,13 +17,13 @@
 
 ## Current Position
 
-**Current phase:** Not started (roadmap complete, awaiting plan-phase)
-**Current plan:** None
-**Status:** Planning complete
+**Current phase:** Phase 1 (Foundation) — planned, awaiting execution
+**Current plan:** 01-01 through 01-03
+**Status:** Phase 1 planned (3 plans in 2 waves)
 
 **Progress:**
 ```
-Phase 1 [Foundation]          [ ] Not started
+Phase 1 [Foundation]          [~] Planned (3 plans, 2 waves)
 Phase 2 [Layout & Content]    [ ] Not started
 Phase 3 [Animation Layer]     [ ] Not started
 Phase 4 [Polish & Distribution] [ ] Not started
