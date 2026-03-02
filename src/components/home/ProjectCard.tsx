@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import type { ProjectMeta } from "@/lib/markdown";
 
 interface ProjectCardProps {
@@ -7,9 +8,12 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, onClick }: ProjectCardProps) {
   return (
-    <button
+    <motion.button
       onClick={onClick}
       className="group block w-full cursor-pointer border-b border-border bg-bg pb-12 pt-6 text-left md:px-6"
+      whileHover={{ scale: 1.015, boxShadow: "0 8px 30px rgba(0,0,0,0.08)" }}
+      whileTap={{ scale: 0.99 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
     >
       {/* 1:1 Square thumbnail */}
       <div
@@ -45,6 +49,6 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
           →
         </span>
       </div>
-    </button>
+    </motion.button>
   );
 }
