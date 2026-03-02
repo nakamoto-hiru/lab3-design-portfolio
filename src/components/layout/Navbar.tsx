@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { motion } from "motion/react";
 import { cn } from "@/lib/cn";
 
 const navItems = [
@@ -44,10 +45,13 @@ export default function Navbar() {
               <span className="self-end text-[14px] text-text-secondary">
                 {isActive ? "↓" : ""}
               </span>
-              <span>
+              <motion.span
+                whileHover={{ x: 2 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+              >
                 <span className="md:hidden">{item.label}</span>
                 <span className="hidden md:inline">{item.desktopLabel}</span>
-              </span>
+              </motion.span>
             </Link>
           );
         })}
