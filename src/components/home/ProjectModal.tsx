@@ -1,25 +1,22 @@
 import { useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import type { Project } from "@/data/projects";
+import { motion, AnimatePresence } from "motion/react";
+import type { ParsedProject } from "@/lib/markdown";
+import { useScrollLock } from "@/hooks/useScrollLock";
 
 interface ProjectModalProps {
-  project: Project | null;
+  project: ParsedProject | null;
   onClose: () => void;
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const panelRef = useRef<HTMLDivElement>(null);
 
+  useScrollLock(!!project);
+
   useEffect(() => {
     if (project) {
-      document.body.style.overflow = "hidden";
       panelRef.current?.scrollTo(0, 0);
-    } else {
-      document.body.style.overflow = "";
     }
-    return () => {
-      document.body.style.overflow = "";
-    };
   }, [project]);
 
   useEffect(() => {
@@ -73,7 +70,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             <div className="px-6 pt-12 pb-24 md:pt-20 md:pb-32">
               {/* Title */}
               <h1 className="max-w-[75%] text-[clamp(32px,3.5vw,56px)] leading-[1.2] tracking-[-0.16vw] font-normal text-text-primary">
-                {project.title}
+                {project.meta.title}
               </h1>
 
               {/* Description + Metadata row */}
@@ -81,7 +78,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {/* Description (left ~75%) */}
                 <div className="md:w-[75%]">
                   <p className="text-[20px] leading-[30px] font-normal text-text-primary">
-                    {project.description}
+                    {project.meta.description}
                   </p>
                 </div>
 
@@ -89,17 +86,17 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <div className="flex flex-wrap gap-6 md:w-[25%] md:flex-col md:gap-4">
                   <div>
                     <h5 className="text-[14px] text-text-secondary">Role</h5>
-                    <h5 className="mt-1 text-[14px] text-text-primary">{project.role}</h5>
+                    <h5 className="mt-1 text-[14px] text-text-primary">{project.meta.role}</h5>
                   </div>
                   <div>
                     <h5 className="text-[14px] text-text-secondary">Industry</h5>
                     <h5 className="mt-1 text-[14px] text-text-primary">
-                      {project.tags.join(", ")}
+                      {project.meta.tags.join(", ")}
                     </h5>
                   </div>
                   <div>
                     <h5 className="text-[14px] text-text-secondary">Year</h5>
-                    <h5 className="mt-1 text-[14px] text-text-primary">2025</h5>
+                    <h5 className="mt-1 text-[14px] text-text-primary">{project.meta.year}</h5>
                   </div>
                 </div>
               </div>
@@ -110,7 +107,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <div
                   className="aspect-[4/3] w-full"
                   style={{
-                    background: `linear-gradient(135deg, ${project.color}20, ${project.color}05)`,
+                    background: `linear-gradient(135deg, ${project.meta.color}20, ${project.meta.color}05)`,
                     border: "1px solid var(--color-border)",
                   }}
                 />
@@ -120,14 +117,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <div
                     className="aspect-square w-full"
                     style={{
-                      background: `linear-gradient(180deg, ${project.color}15, ${project.color}05)`,
+                      background: `linear-gradient(180deg, ${project.meta.color}15, ${project.meta.color}05)`,
                       border: "1px solid var(--color-border)",
                     }}
                   />
                   <div
                     className="aspect-square w-full"
                     style={{
-                      background: `linear-gradient(0deg, ${project.color}15, ${project.color}05)`,
+                      background: `linear-gradient(0deg, ${project.meta.color}15, ${project.meta.color}05)`,
                       border: "1px solid var(--color-border)",
                     }}
                   />
@@ -137,7 +134,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 <div
                   className="aspect-[4/3] w-full"
                   style={{
-                    background: `linear-gradient(225deg, ${project.color}18, ${project.color}05)`,
+                    background: `linear-gradient(225deg, ${project.meta.color}18, ${project.meta.color}05)`,
                     border: "1px solid var(--color-border)",
                   }}
                 />
@@ -148,7 +145,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     Scope
                   </h2>
                   <ul className="space-y-0">
-                    {project.scope.map((item, i) => (
+                    {project.meta.scope.map((item, i) => (
                       <li
                         key={i}
                         className="border-t border-border py-4 text-[16px] leading-[24px] text-text-primary md:text-[20px] md:leading-[30px]"
@@ -165,7 +162,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     Impact
                   </h2>
                   <ul className="space-y-0">
-                    {project.impact.map((item, i) => (
+                    {project.meta.impact.map((item, i) => (
                       <li
                         key={i}
                         className="border-t border-border py-4 text-[16px] leading-[24px] text-text-primary md:text-[20px] md:leading-[30px]"
@@ -181,14 +178,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <div
                     className="aspect-square w-full"
                     style={{
-                      background: `linear-gradient(135deg, ${project.color}12, ${project.color}05)`,
+                      background: `linear-gradient(135deg, ${project.meta.color}12, ${project.meta.color}05)`,
                       border: "1px solid var(--color-border)",
                     }}
                   />
                   <div
                     className="aspect-square w-full"
                     style={{
-                      background: `linear-gradient(315deg, ${project.color}12, ${project.color}05)`,
+                      background: `linear-gradient(315deg, ${project.meta.color}12, ${project.meta.color}05)`,
                       border: "1px solid var(--color-border)",
                     }}
                   />

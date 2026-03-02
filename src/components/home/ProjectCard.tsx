@@ -1,7 +1,7 @@
-import type { Project } from "@/data/projects";
+import type { ProjectMeta } from "@/lib/markdown";
 
 interface ProjectCardProps {
-  project: Project;
+  project: ProjectMeta;
   onClick: () => void;
 }
 

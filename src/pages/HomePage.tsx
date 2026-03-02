@@ -1,30 +1,14 @@
-import { useCallback, useState, useEffect } from "react";
+import { useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import Hero from "@/components/home/Hero";
 import ProjectGrid from "@/components/home/ProjectGrid";
 import ProjectModal from "@/components/home/ProjectModal";
-import { projects } from "@/data/projects";
+import { projects } from "@/content/loader";
 
 export default function HomePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const projectSlug = searchParams.get("project");
-  const activeProject = projects.find((p) => p.slug === projectSlug) ?? null;
-
-  const [scrollLocked, setScrollLocked] = useState(true);
-
-  useEffect(() => {
-    if (scrollLocked) {
-      document.body.style.overflow = "hidden";
-      const timer = setTimeout(() => {
-        setScrollLocked(false);
-        document.body.style.overflow = "";
-      }, 900);
-      return () => {
-        clearTimeout(timer);
-        document.body.style.overflow = "";
-      };
-    }
-  }, [scrollLocked]);
+  const activeProject = projects.find((p) => p.meta.slug === projectSlug) ?? null;
 
   const handleProjectClick = useCallback(
     (slug: string) => {

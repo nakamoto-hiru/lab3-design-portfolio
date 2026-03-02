@@ -1,4 +1,4 @@
-import { projects } from "@/data/projects";
+import { projects } from "@/content/loader";
 import ProjectCard from "./ProjectCard";
 
 interface ProjectGridProps {
@@ -18,9 +18,9 @@ export default function ProjectGrid({ onProjectClick }: ProjectGridProps) {
         <div className="flex flex-col gap-0 md:hidden">
           {projects.map((project) => (
             <ProjectCard
-              key={project.slug}
-              project={project}
-              onClick={() => onProjectClick(project.slug)}
+              key={project.meta.slug}
+              project={project.meta}
+              onClick={() => onProjectClick(project.meta.slug)}
             />
           ))}
         </div>
@@ -31,9 +31,9 @@ export default function ProjectGrid({ onProjectClick }: ProjectGridProps) {
           <div className="mt-[337px] border-t border-l border-border">
             {leftCol.map((project) => (
               <ProjectCard
-                key={project.slug}
-                project={project}
-                onClick={() => onProjectClick(project.slug)}
+                key={project.meta.slug}
+                project={project.meta}
+                onClick={() => onProjectClick(project.meta.slug)}
               />
             ))}
           </div>
@@ -45,9 +45,9 @@ export default function ProjectGrid({ onProjectClick }: ProjectGridProps) {
           <div className="border-t border-border">
             {rightCol.map((project) => (
               <ProjectCard
-                key={project.slug}
-                project={project}
-                onClick={() => onProjectClick(project.slug)}
+                key={project.meta.slug}
+                project={project.meta}
+                onClick={() => onProjectClick(project.meta.slug)}
               />
             ))}
           </div>
