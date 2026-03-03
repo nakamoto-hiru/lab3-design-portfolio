@@ -20,29 +20,21 @@ export default function Footer() {
               Designed by Slug Macro
             </p>
 
-            {/* Back to top — aligned with theme toggle */}
+            {/* Back to top — aligned with dark mode toggle position */}
             <button
               onClick={scrollToTop}
-              className="flex h-6 w-6 items-center justify-center text-text-secondary transition-opacity hover:opacity-60"
-              aria-label="Back to top"
+              className="cursor-pointer text-[0.8125rem] tracking-wide text-text-secondary transition-opacity duration-300 hover:opacity-60"
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="12" y1="19" x2="12" y2="5" />
-                <polyline points="5 12 12 5 19 12" />
-              </svg>
+              Back to top
             </button>
           </div>
 
-          {/* Mobile: back to top only */}
+          {/* Mobile: back to top */}
           <button
             onClick={scrollToTop}
-            className="ml-auto flex h-8 w-8 items-center justify-center md:hidden"
-            aria-label="Back to top"
+            className="ml-auto cursor-pointer text-[0.8125rem] tracking-wide text-text-secondary transition-opacity duration-300 hover:opacity-60 md:hidden"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="12" y1="19" x2="12" y2="5" />
-              <polyline points="5 12 12 5 19 12" />
-            </svg>
+            Back to top
           </button>
         </div>
       </Container>
