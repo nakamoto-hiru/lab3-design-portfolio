@@ -7,12 +7,12 @@
   --color-text-primary: #000000;
   --color-text-secondary: #999999;
   --color-text-tertiary: #777777;
-  --color-border: #eeeeee;
+  --color-border: rgba(0, 0, 0, 0.06);
   --color-accent: #1a8a00;
 
   --font-sans: "SF Pro Display", "SF Pro", -apple-system, BlinkMacSystemFont, "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --container-max: 1624px;
+  --container-max: 1600px;
 }
 
 /* ── Base resets (must be in @layer to not override utilities) ── */
@@ -29,7 +29,7 @@
     --color-text-primary: #f0f0f0;
     --color-text-secondary: #808080;
     --color-text-tertiary: #666666;
-    --color-border: rgba(255, 255, 255, 0.1);
+    --color-border: rgba(255, 255, 255, 0.06);
     --color-accent: #27bf00;
   }
 

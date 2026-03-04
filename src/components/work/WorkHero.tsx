@@ -7,7 +7,7 @@ interface WorkHeroProps {
 }
 
 function hasImage(url?: string) {
-  return url && url.length > 0 && (url.startsWith('http') || url.startsWith('data:'))
+  return url && url.length > 0 && (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/'))
 }
 
 export default function WorkHero({ data, content }: WorkHeroProps) {
@@ -58,7 +58,7 @@ export default function WorkHero({ data, content }: WorkHeroProps) {
 
       {/* Hero image */}
       <Container>
-        <div className="aspect-[8/5] w-full overflow-hidden bg-bg-secondary">
+        <div className="aspect-[8/5] w-full overflow-hidden ring-1 ring-white/[0.08] bg-bg-secondary">
           {hasImage(data.heroImage) ? (
             <img
               src={data.heroImage}

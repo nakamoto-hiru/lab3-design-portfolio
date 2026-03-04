@@ -6,7 +6,7 @@ interface ProjectCardProps {
 }
 
 function hasImage(url?: string) {
-  return url && url.length > 0 && (url.startsWith('http') || url.startsWith('data:'))
+  return url && url.length > 0 && (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/'))
 }
 
 export default function ProjectCard({ work }: ProjectCardProps) {
@@ -14,7 +14,7 @@ export default function ProjectCard({ work }: ProjectCardProps) {
 
   return (
     <Link to={`/work/${slug}`} className="group block">
-      <div className="aspect-[4/5] w-full overflow-hidden bg-bg-secondary">
+      <div className="aspect-[4/5] w-full overflow-hidden ring-1 ring-white/[0.08] bg-bg-secondary">
         {hasImage(thumbnailImage) ? (
           <img
             src={thumbnailImage}

@@ -6,12 +6,12 @@ interface WorkGalleryProps {
 }
 
 function hasImage(url?: string) {
-  return url && url.length > 0 && (url.startsWith('http') || url.startsWith('data:'))
+  return url && url.length > 0 && (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/'))
 }
 
-function ImageBlock({ src, alt, full }: { src: string; alt: string; full?: boolean }) {
+function ImageBlock({ src, alt, cols }: { src: string; alt: string; cols: number }) {
   return (
-    <div className={`aspect-[8/5] ${full ? '' : 'md:aspect-[4/5]'} overflow-hidden bg-bg-secondary`}>
+    <div className={`aspect-[8/5] ${cols === 1 ? '' : 'md:aspect-[4/5]'} overflow-hidden ring-1 ring-white/[0.08] bg-bg-secondary`}>
       {hasImage(src) ? (
         <img src={src} alt={alt} loading="lazy" className="h-full w-full object-cover" />
       ) : (
@@ -22,32 +22,33 @@ function ImageBlock({ src, alt, full }: { src: string; alt: string; full?: boole
 }
 
 /**
- * Gallery with alternating 1-2-1-2 layout.
- * Row pattern: 1 full-width, 2 side-by-side, repeat.
+ * Gallery with repeating 1-2-2 layout.
+ * Row pattern: 1 full-width, 2 side-by-side, 2 side-by-side, repeat.
  */
 export default function WorkGallery({ data }: WorkGalleryProps) {
   if (data.galleryImages.length === 0) return null
 
-  // Build rows: [1], [2], [1], [2], ...
+  // Build rows: [1], [2], [2], [1], [2], [2], ...
+  const pattern = [1, 2, 2]
   const rows: string[][] = []
   let idx = 0
-  let isSingle = true
+  let step = 0
 
   while (idx < data.galleryImages.length) {
-    if (isSingle) {
-      rows.push([data.galleryImages[idx]])
+    const count = pattern[step % pattern.length]
+    const row: string[] = []
+    for (let i = 0; i < count && idx < data.galleryImages.length; i++) {
+      row.push(data.galleryImages[idx])
       idx += 1
-    } else {
-      const pair = [data.galleryImages[idx]]
-      if (idx + 1 < data.galleryImages.length) {
-        pair.push(data.galleryImages[idx + 1])
-        idx += 2
-      } else {
-        idx += 1
-      }
-      rows.push(pair)
     }
-    isSingle = !isSingle
+    rows.push(row)
+    step += 1
+  }
+
+  const gridClass = (len: number) => {
+    if (len === 3) return 'grid grid-cols-1 gap-[0.667rem] md:grid-cols-3'
+    if (len === 2) return 'grid grid-cols-1 gap-[0.667rem] md:grid-cols-2'
+    return ''
   }
 
   return (
@@ -56,14 +57,14 @@ export default function WorkGallery({ data }: WorkGalleryProps) {
         {rows.map((row, ri) => (
           <div
             key={ri}
-            className={row.length === 2 ? 'grid grid-cols-1 gap-[0.667rem] md:grid-cols-2' : ''}
+            className={gridClass(row.length)}
           >
             {row.map((img, ci) => (
               <ImageBlock
                 key={`${ri}-${ci}`}
                 src={img}
-                alt={`${data.title} gallery ${ri * 2 + ci + 1}`}
-                full={row.length === 1}
+                alt={`${data.title} gallery ${ri + ci + 1}`}
+                cols={row.length}
               />
             ))}
           </div>

@@ -12,9 +12,15 @@ tags:
 role: Product Design
 featured: true
 featuredOrder: 3
-thumbnailImage: ""
-heroImage: ""
-galleryImages: ["", "", "", "", "", ""]
+thumbnailImage: "/images/mention-network/thumbnail.png"
+heroImage: "/images/mention-network/hero.png"
+galleryImages:
+  - "/images/mention-network/gallery-1.png"
+  - "/images/mention-network/gallery-2.png"
+  - "/images/mention-network/gallery-3.png"
+  - "/images/mention-network/gallery-4.png"
+  - "/images/mention-network/gallery-5.png"
+  - "/images/mention-network/gallery-6.png"
 color: "#06b6d4"
 ---
 

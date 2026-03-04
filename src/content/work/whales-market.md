@@ -12,9 +12,15 @@ tags:
 role: Product Design
 featured: true
 featuredOrder: 1
-thumbnailImage: ""
-heroImage: ""
-galleryImages: ["", "", "", "", "", ""]
+thumbnailImage: "/images/whales-market/thumbnail.png"
+heroImage: "/images/whales-market/hero.png"
+galleryImages:
+  - "/images/whales-market/gallery-1.png"
+  - "/images/whales-market/gallery-2.png"
+  - "/images/whales-market/gallery-3.png"
+  - "/images/whales-market/gallery-4.png"
+  - "/images/whales-market/gallery-5.png"
+  - "/images/whales-market/gallery-6.png"
 color: "#4c48ff"
 ---
 

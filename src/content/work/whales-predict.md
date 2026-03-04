@@ -12,9 +12,15 @@ tags:
 role: Product Design
 featured: true
 featuredOrder: 2
-thumbnailImage: ""
-heroImage: ""
-galleryImages: ["", "", "", "", "", ""]
+thumbnailImage: "/images/whales-predict/thumbnail.png"
+heroImage: "/images/whales-predict/hero.png"
+galleryImages:
+  - "/images/whales-predict/gallery-1.png"
+  - "/images/whales-predict/gallery-2.png"
+  - "/images/whales-predict/gallery-3.png"
+  - "/images/whales-predict/gallery-4.png"
+  - "/images/whales-predict/gallery-5.png"
+  - "/images/whales-predict/gallery-6.png"
 color: "#8b5cf6"
 ---
 
