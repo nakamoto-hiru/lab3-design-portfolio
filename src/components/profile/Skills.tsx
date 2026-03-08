@@ -24,13 +24,13 @@ export default function Skills({ skills }: SkillsProps) {
       <Container>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_3fr] md:gap-0">
           {/* Label */}
-          <p className="text-[0.8125rem] font-medium tracking-wide text-text-primary">
+          <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
             Skills
           </p>
 
           {/* Content */}
           <div>
-            <p className="max-w-[55ch] text-[0.8125rem] leading-[1.6] tracking-wide text-text-primary">
+            <p className="max-w-[55ch] text-[0.875rem] leading-[1.6] tracking-wide text-text-primary">
               {skills.summary}
             </p>
 
@@ -38,7 +38,7 @@ export default function Skills({ skills }: SkillsProps) {
               {skills.items.map((item, i) => (
                 <li
                   key={i}
-                  className="text-[0.8125rem] leading-[1.6] tracking-wide text-text-primary"
+                  className="text-[0.875rem] leading-[1.6] tracking-wide text-text-primary"
                 >
                   {renderBold(item)}
                 </li>

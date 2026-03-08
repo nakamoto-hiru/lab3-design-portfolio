@@ -6,11 +6,9 @@ interface MobileMenuProps {
   open: boolean
   onClose: () => void
   links: { label: string; to: string }[]
-  darkMode: boolean
-  onToggleDark: () => void
 }
 
-export default function MobileMenu({ open, onClose, links, darkMode, onToggleDark }: MobileMenuProps) {
+export default function MobileMenu({ open, onClose, links }: MobileMenuProps) {
   useScrollLock(open)
 
   return (
@@ -25,7 +23,7 @@ export default function MobileMenu({ open, onClose, links, darkMode, onToggleDar
         >
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-4">
-            <span className="text-[0.8125rem] tracking-wide text-text-primary">
+            <span className="text-[0.875rem] tracking-wide text-text-primary">
               Slug Macro
             </span>
             <button
@@ -60,18 +58,6 @@ export default function MobileMenu({ open, onClose, links, darkMode, onToggleDar
             ))}
           </nav>
 
-          {/* Footer: dark mode toggle */}
-          <div className="flex items-center gap-4 px-4 py-6">
-            <button
-              onClick={onToggleDark}
-              className="flex cursor-pointer items-center gap-1 text-[0.8125rem] text-text-secondary"
-            >
-              <span>Dark Mode</span>
-              <span className="text-text-tertiary">
-                [{darkMode ? 'Y' : 'N'}]
-              </span>
-            </button>
-          </div>
         </motion.div>
       )}
     </AnimatePresence>

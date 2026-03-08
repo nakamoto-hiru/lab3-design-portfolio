@@ -14,10 +14,10 @@ export default function FeaturedGrid({ work }: FeaturedGridProps) {
         {/* Section header — same 1fr/3fr grid as nav + hero */}
         <AnimatedSection>
           <div className="mb-4 grid grid-cols-1 items-baseline border-b border-border pb-4 md:grid-cols-[1fr_3fr]">
-            <p className="text-[0.8125rem] font-medium tracking-wide text-text-primary">
+            <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
               Selected work
             </p>
-            <p className="text-[0.8125rem] tracking-wide text-text-secondary">
+            <p className="text-[0.875rem] tracking-wide text-text-secondary">
               2025 — Trading, AI & Design Systems
             </p>
           </div>

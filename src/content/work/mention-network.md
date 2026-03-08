@@ -21,6 +21,7 @@ galleryImages:
   - "/images/mention-network/gallery-4.png"
   - "/images/mention-network/gallery-5.png"
   - "/images/mention-network/gallery-6.png"
+galleryLayout: full
 color: "#06b6d4"
 ---
 

@@ -11,7 +11,7 @@ function hasImage(url?: string) {
 
 function ImageBlock({ src, alt, cols }: { src: string; alt: string; cols: number }) {
   return (
-    <div className={`aspect-[8/5] ${cols === 1 ? '' : 'md:aspect-[4/5]'} overflow-hidden ring-1 ring-border bg-bg-secondary`}>
+    <div className={`aspect-[8/5] ${cols === 1 ? '' : 'md:aspect-[4/5]'} overflow-hidden bg-bg-secondary ring-1 ring-border`}>
       {hasImage(src) ? (
         <img src={src} alt={alt} loading="lazy" className="h-full w-full object-cover" />
       ) : (
@@ -22,11 +22,24 @@ function ImageBlock({ src, alt, cols }: { src: string; alt: string; cols: number
 }
 
 /**
- * Gallery with repeating 1-2-2 layout.
- * Row pattern: 1 full-width, 2 side-by-side, 2 side-by-side, repeat.
+ * Gallery layout:
+ * - 'full': all images stacked full-width
+ * - 'pattern': repeating 1-2-2 row pattern
  */
 export default function WorkGallery({ data }: WorkGalleryProps) {
   if (data.galleryImages.length === 0) return null
+
+  if (data.galleryLayout === 'full') {
+    return (
+      <section className="space-y-4">
+        <Container className="space-y-4">
+          {data.galleryImages.map((img, i) => (
+            <ImageBlock key={i} src={img} alt={`${data.title} gallery ${i + 1}`} cols={1} />
+          ))}
+        </Container>
+      </section>
+    )
+  }
 
   // Build rows: [1], [2], [2], [1], [2], [2], ...
   const pattern = [1, 2, 2]
@@ -46,7 +59,6 @@ export default function WorkGallery({ data }: WorkGalleryProps) {
   }
 
   const gridClass = (len: number) => {
-    if (len === 3) return 'grid grid-cols-1 gap-4 md:grid-cols-3'
     if (len === 2) return 'grid grid-cols-1 gap-4 md:grid-cols-2'
     return ''
   }
@@ -55,10 +67,7 @@ export default function WorkGallery({ data }: WorkGalleryProps) {
     <section className="space-y-4">
       <Container className="space-y-4">
         {rows.map((row, ri) => (
-          <div
-            key={ri}
-            className={gridClass(row.length)}
-          >
+          <div key={ri} className={gridClass(row.length)}>
             {row.map((img, ci) => (
               <ImageBlock
                 key={`${ri}-${ci}`}

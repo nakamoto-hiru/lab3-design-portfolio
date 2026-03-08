@@ -12,7 +12,7 @@ export default function InfoPanel({ data }: InfoPanelProps) {
       <Container>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_3fr] md:gap-0">
           {/* Label */}
-          <p className="text-[0.8125rem] font-medium tracking-wide text-text-primary">
+          <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
             Information
           </p>
 
@@ -20,10 +20,10 @@ export default function InfoPanel({ data }: InfoPanelProps) {
           <div className="space-y-6">
             {/* Name + Title */}
             <div>
-              <p className="text-[0.8125rem] tracking-wide text-text-primary">
+              <p className="text-[0.875rem] tracking-wide text-text-primary">
                 {data.name}
               </p>
-              <p className="mt-1 text-[0.8125rem] tracking-wide text-text-secondary">
+              <p className="mt-1 text-[0.875rem] tracking-wide text-text-secondary">
                 {data.title}
               </p>
             </div>
@@ -32,7 +32,7 @@ export default function InfoPanel({ data }: InfoPanelProps) {
             <div>
               <a
                 href={`mailto:${data.email}`}
-                className="text-[0.8125rem] tracking-wide text-text-primary underline decoration-border underline-offset-4 transition-opacity hover:opacity-60"
+                className="text-[0.875rem] tracking-wide text-text-primary underline decoration-border underline-offset-4 transition-opacity hover:opacity-60"
               >
                 {data.email}
               </a>
@@ -46,7 +46,7 @@ export default function InfoPanel({ data }: InfoPanelProps) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[0.8125rem] tracking-wide text-text-primary underline decoration-border underline-offset-4 transition-opacity hover:opacity-60"
+                  className="text-[0.875rem] tracking-wide text-text-primary underline decoration-border underline-offset-4 transition-opacity hover:opacity-60"
                 >
                   {link.label} ↗
                 </a>
@@ -58,10 +58,10 @@ export default function InfoPanel({ data }: InfoPanelProps) {
 
             {/* Location */}
             <div>
-              <p className="text-[0.8125rem] tracking-wide text-text-secondary">
+              <p className="text-[0.875rem] tracking-wide text-text-secondary">
                 {data.coordinates}
               </p>
-              <p className="text-[0.8125rem] tracking-wide text-text-secondary">
+              <p className="text-[0.875rem] tracking-wide text-text-secondary">
                 {data.location}
               </p>
             </div>

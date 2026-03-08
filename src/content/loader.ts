@@ -19,7 +19,7 @@ const workModules = import.meta.glob('./work/*.md', {
   eager: true,
 })
 
-export function getAllWork(): Array<{ data: WorkFrontmatter; content: string }> {
+function getAllWork(): Array<{ data: WorkFrontmatter; content: string }> {
   return Object.values(workModules).map((raw) =>
     parseFrontmatter(raw as string, workFrontmatterSchema)
   )

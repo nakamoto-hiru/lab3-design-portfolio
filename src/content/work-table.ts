@@ -1,4 +1,4 @@
-export interface WorkTableEntry {
+interface WorkTableEntry {
   year: string
   product: string
   type: string

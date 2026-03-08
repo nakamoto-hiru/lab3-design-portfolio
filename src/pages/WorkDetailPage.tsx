@@ -5,10 +5,12 @@ import WorkHero from '@/components/work/WorkHero'
 import WorkGallery from '@/components/work/WorkGallery'
 import WorkContent from '@/components/work/WorkContent'
 import WorkNav from '@/components/work/WorkNav'
+import { useImageTheme } from '@/hooks/useImageTheme'
 
 export default function WorkDetailPage() {
   const { slug } = useParams<{ slug: string }>()
   const work = getWorkBySlug(slug ?? '')
+  useImageTheme(work?.data.heroImage)
 
   if (!work) return <Navigate to="/" replace />
 

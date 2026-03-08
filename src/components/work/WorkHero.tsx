@@ -35,20 +35,20 @@ export default function WorkHero({ data, content }: WorkHeroProps) {
           {/* Meta: horizontal, left-aligned, below desc */}
           <div className="mt-8 flex flex-wrap gap-x-8 gap-y-2">
             <div>
-              <p className="text-[0.8125rem] tracking-wide text-text-secondary">Year</p>
-              <p className="mt-1 text-[0.8125rem] tracking-wide text-text-primary">
+              <p className="text-[0.875rem] tracking-wide text-text-secondary">Year</p>
+              <p className="mt-1 text-[0.875rem] tracking-wide text-text-primary">
                 {data.year}
               </p>
             </div>
             <div>
-              <p className="text-[0.8125rem] tracking-wide text-text-secondary">Role</p>
-              <p className="mt-1 text-[0.8125rem] tracking-wide text-text-primary">
+              <p className="text-[0.875rem] tracking-wide text-text-secondary">Role</p>
+              <p className="mt-1 text-[0.875rem] tracking-wide text-text-primary">
                 {data.role}
               </p>
             </div>
             <div>
-              <p className="text-[0.8125rem] tracking-wide text-text-secondary">Type</p>
-              <p className="mt-1 text-[0.8125rem] tracking-wide text-text-primary">
+              <p className="text-[0.875rem] tracking-wide text-text-secondary">Type</p>
+              <p className="mt-1 text-[0.875rem] tracking-wide text-text-primary">
                 {data.type}
               </p>
             </div>
@@ -58,7 +58,7 @@ export default function WorkHero({ data, content }: WorkHeroProps) {
 
       {/* Hero image */}
       <Container>
-        <div className="aspect-[8/5] w-full overflow-hidden ring-1 ring-border bg-bg-secondary">
+        <div className="aspect-[8/5] w-full overflow-hidden bg-bg-secondary ring-1 ring-border">
           {hasImage(data.heroImage) ? (
             <img
               src={data.heroImage}

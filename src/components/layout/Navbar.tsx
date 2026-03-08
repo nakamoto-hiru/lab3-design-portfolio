@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
 import { cn } from '@/lib/cn'
-import { useDisplayModes } from '@/hooks/useDisplayModes'
 import { useState } from 'react'
 import MobileMenu from './MobileMenu'
 import Container from './Container'
@@ -12,7 +11,6 @@ const navLinks = [
 
 export default function Navbar() {
   const location = useLocation()
-  const { darkMode, toggleDarkMode } = useDisplayModes()
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
@@ -23,7 +21,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               to="/"
-              className="text-[0.8125rem] tracking-wide text-text-primary"
+              className="text-[0.875rem] font-medium tracking-wide text-text-primary"
             >
               Slug Macro
             </Link>
@@ -36,7 +34,7 @@ export default function Navbar() {
                     key={link.to}
                     to={link.to}
                     className={cn(
-                      'text-[0.8125rem] tracking-wide transition-opacity duration-300 hover:opacity-60',
+                      'text-[0.875rem] tracking-wide transition-opacity duration-300 hover:opacity-60',
                       location.pathname === link.to
                         ? 'text-text-primary'
                         : 'text-text-secondary'
@@ -47,16 +45,6 @@ export default function Navbar() {
                 ))}
               </div>
 
-              {/* Dark mode toggle — far right */}
-              <button
-                onClick={toggleDarkMode}
-                className="flex cursor-pointer items-center gap-1 text-[0.8125rem] tracking-wide text-text-secondary transition-opacity duration-300 hover:opacity-60"
-              >
-                <span>Dark Mode</span>
-                <span className="text-text-tertiary">
-                  [{darkMode ? 'Y' : 'N'}]
-                </span>
-              </button>
             </div>
 
             {/* Mobile menu button */}
@@ -79,8 +67,6 @@ export default function Navbar() {
         open={menuOpen}
         onClose={() => setMenuOpen(false)}
         links={navLinks}
-        darkMode={darkMode}
-        onToggleDark={toggleDarkMode}
       />
     </>
   )

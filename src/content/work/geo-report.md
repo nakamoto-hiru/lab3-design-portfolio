@@ -17,10 +17,7 @@ heroImage: "/images/geo-report/hero.png"
 galleryImages:
   - "/images/geo-report/gallery-1.png"
   - "/images/geo-report/gallery-2.png"
-  - "/images/geo-report/gallery-3.png"
-  - "/images/geo-report/gallery-4.png"
-  - "/images/geo-report/gallery-5.png"
-  - "/images/geo-report/gallery-6.png"
+galleryLayout: full
 color: "#f59e0b"
 ---
 

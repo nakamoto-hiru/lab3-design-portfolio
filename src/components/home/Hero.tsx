@@ -10,15 +10,15 @@ export default function Hero() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_3fr] md:gap-0">
           {/* Left: role + coordinates */}
           <div>
-            <p className="text-[0.8125rem] font-medium tracking-wide text-text-primary">
+            <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
               {profile.data.title}
             </p>
-            <p className="mt-4 text-[0.8125rem] tracking-wide text-text-secondary">
+            <p className="mt-4 text-[0.875rem] tracking-wide text-text-secondary">
               {profile.data.coordinates}
               <br />
               {profile.data.location}
             </p>
-            <p className="mt-4 text-[0.8125rem] tracking-wide text-accent">
+            <p className="mt-4 text-[0.875rem] tracking-wide text-accent">
               Open to Product / Systems Roles
             </p>
           </div>

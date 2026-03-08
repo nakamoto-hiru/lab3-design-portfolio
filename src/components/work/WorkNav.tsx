@@ -25,10 +25,10 @@ export default function WorkNav({ currentSlug }: WorkNavProps) {
             to={`/work/${prevWork.data.slug}`}
             className="group py-8 pr-4 md:py-12"
           >
-            <span className="text-[0.8125rem] tracking-wide text-text-secondary">
+            <span className="text-[0.875rem] tracking-wide text-text-secondary">
               Prev
             </span>
-            <p className="mt-1 text-[0.8125rem] font-medium tracking-wide text-text-primary transition-opacity duration-300 group-hover:opacity-60">
+            <p className="mt-1 text-[0.875rem] font-medium tracking-wide text-text-primary transition-opacity duration-300 group-hover:opacity-60">
               {prevWork.data.title}
             </p>
           </Link>
@@ -38,10 +38,10 @@ export default function WorkNav({ currentSlug }: WorkNavProps) {
             to={`/work/${nextWork.data.slug}`}
             className="group border-l border-border py-8 pl-4 text-right md:py-12"
           >
-            <span className="text-[0.8125rem] tracking-wide text-text-secondary">
+            <span className="text-[0.875rem] tracking-wide text-text-secondary">
               Next
             </span>
-            <p className="mt-1 text-[0.8125rem] font-medium tracking-wide text-text-primary transition-opacity duration-300 group-hover:opacity-60">
+            <p className="mt-1 text-[0.875rem] font-medium tracking-wide text-text-primary transition-opacity duration-300 group-hover:opacity-60">
               {nextWork.data.title}
             </p>
           </Link>

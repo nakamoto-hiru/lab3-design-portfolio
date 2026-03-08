@@ -14,7 +14,7 @@ export default function ProjectCard({ work }: ProjectCardProps) {
 
   return (
     <Link to={`/work/${slug}`} className="group block">
-      <div className="aspect-[4/5] w-full overflow-hidden rounded-sm ring-1 ring-border bg-bg-secondary">
+      <div className="aspect-[4/5] w-full overflow-hidden bg-bg-secondary">
         {hasImage(thumbnailImage) ? (
           <img
             src={thumbnailImage}
@@ -28,10 +28,10 @@ export default function ProjectCard({ work }: ProjectCardProps) {
       </div>
       <div className="mt-4 flex items-start justify-between gap-4">
         <div>
-          <span className="text-[0.8125rem] font-medium tracking-wide text-text-primary transition-opacity duration-300 group-hover:opacity-70">
+          <span className="text-[0.875rem] font-medium tracking-wide text-text-primary transition-opacity duration-300 group-hover:opacity-70">
             {title}
           </span>
-          <span className="mt-1 block text-[0.8125rem] tracking-wide text-text-secondary">
+          <span className="mt-1 block text-[0.875rem] tracking-wide text-text-secondary">
             {type}
           </span>
         </div>

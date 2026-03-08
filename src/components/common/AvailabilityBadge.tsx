@@ -13,7 +13,7 @@ const statusText: Record<AvailabilityBadgeProps['status'], string> = {
 
 export default function AvailabilityBadge({ status, className }: AvailabilityBadgeProps) {
   return (
-    <p className={cn('text-[0.8125rem] tracking-wide text-accent', className)}>
+    <p className={cn('text-[0.875rem] tracking-wide text-accent', className)}>
       {statusText[status]}
     </p>
   )

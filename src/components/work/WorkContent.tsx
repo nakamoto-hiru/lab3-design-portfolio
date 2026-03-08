@@ -22,7 +22,7 @@ export default function WorkContent({ content }: WorkContentProps) {
               className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_3fr] md:gap-0"
             >
               {/* Left: heading */}
-              <p className="text-[0.8125rem] font-medium tracking-wide text-text-primary">
+              <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
                 {section.heading}
               </p>
 
@@ -33,14 +33,14 @@ export default function WorkContent({ content }: WorkContentProps) {
                     {section.items.map((item, j) => (
                       <li
                         key={j}
-                        className="text-[0.8125rem] leading-[1.6] text-text-primary"
+                        className="text-[0.875rem] leading-[1.6] text-text-primary"
                       >
                         {item}
                       </li>
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-[0.8125rem] leading-[1.6] text-text-primary">
+                  <p className="text-[0.875rem] leading-[1.6] text-text-primary">
                     {section.text}
                   </p>
                 )}
