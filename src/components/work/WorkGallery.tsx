@@ -5,19 +5,9 @@ interface WorkGalleryProps {
   data: WorkFrontmatter
 }
 
-function hasImage(url?: string) {
-  return url && url.length > 0 && (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/'))
-}
-
-function ImageBlock({ src, alt, cols }: { src: string; alt: string; cols: number }) {
+function ImageBlock({ cols }: { src: string; alt: string; cols: number }) {
   return (
-    <div className={`aspect-[8/5] ${cols === 1 ? '' : 'md:aspect-[4/5]'} overflow-hidden bg-bg-secondary ring-1 ring-border`}>
-      {hasImage(src) ? (
-        <img src={src} alt={alt} loading="lazy" className="h-full w-full object-cover" />
-      ) : (
-        <div className="h-full w-full" />
-      )}
-    </div>
+    <div className={`aspect-[8/5] ${cols === 1 ? '' : 'md:aspect-[4/5]'} bg-bg-secondary ring-1 ring-border`} />
   )
 }
 

@@ -1,34 +1,31 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import CrtBackground, { CrtProvider } from './CrtBackground'
 
 export default function RootLayout() {
   const location = useLocation()
 
-  // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [location.pathname])
 
   return (
-    <>
-      <Navbar />
-      <main className="pt-14">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={location.pathname}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            <Outlet />
-          </motion.div>
-        </AnimatePresence>
-      </main>
-      <Footer />
-    </>
+    <CrtProvider>
+      <CrtBackground />
+      {/* Border line — always on top */}
+      <div
+        className="fixed top-0 bottom-0 z-[80] w-px bg-border"
+        style={{ left: 'min(var(--container-max), 100vw)' }}
+      />
+      <div className="relative w-full max-w-[var(--container-max)] min-h-screen">
+        <Navbar />
+        <main className="relative z-10 bg-bg">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </CrtProvider>
   )
 }

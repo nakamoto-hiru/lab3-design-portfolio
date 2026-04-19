@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 
+const THEME_KEY = 'slug-theme'
+
 function getImageBrightness(src: string): Promise<number> {
   return new Promise((resolve) => {
     const img = new Image()
@@ -22,6 +24,18 @@ function getImageBrightness(src: string): Promise<number> {
   })
 }
 
+function restoreUserTheme() {
+  const stored = localStorage.getItem(THEME_KEY)
+  const html = document.documentElement
+  if (stored === 'light') {
+    html.setAttribute('data-theme', 'light')
+  } else if (stored === 'mono') {
+    html.setAttribute('data-theme', 'mono')
+  } else {
+    html.removeAttribute('data-theme')
+  }
+}
+
 export function useImageTheme(src?: string) {
   useEffect(() => {
     if (!src) return
@@ -30,7 +44,7 @@ export function useImageTheme(src?: string) {
       document.documentElement.setAttribute('data-theme', theme)
     })
     return () => {
-      document.documentElement.removeAttribute('data-theme')
+      restoreUserTheme()
     }
   }, [src])
 }

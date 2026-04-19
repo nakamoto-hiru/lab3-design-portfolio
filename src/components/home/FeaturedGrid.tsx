@@ -1,6 +1,8 @@
+import { useState, useCallback } from 'react'
 import Container from '@/components/layout/Container'
 import AnimatedSection from '@/components/common/AnimatedSection'
 import ProjectCard from './ProjectCard'
+import ProjectSidebar from './ProjectSidebar'
 import type { WorkFrontmatter } from '@/content/schema'
 
 interface FeaturedGridProps {
@@ -8,30 +10,30 @@ interface FeaturedGridProps {
 }
 
 export default function FeaturedGrid({ work }: FeaturedGridProps) {
+  const [selected, setSelected] = useState<{ data: WorkFrontmatter; content: string } | null>(null)
+  const close = useCallback(() => setSelected(null), [])
+
   return (
-    <section>
+    <section className="border-t border-border py-12">
       <Container>
-        {/* Section header — same 1fr/3fr grid as nav + hero */}
-        <AnimatedSection>
-          <div className="mb-4 grid grid-cols-1 items-baseline border-b border-border pb-4 md:grid-cols-[1fr_3fr]">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_3fr] md:gap-0">
+          <div className="self-start sticky top-16">
             <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
               Selected work
             </p>
-            <p className="text-[0.875rem] tracking-wide text-text-secondary">
-              2025 — Trading, AI & Design Systems
-            </p>
           </div>
-        </AnimatedSection>
 
-        {/* Project grid */}
-        <div className="grid grid-cols-1 gap-x-4 gap-y-12 sm:grid-cols-2 md:gap-x-5">
-          {work.map((w, i) => (
-            <AnimatedSection key={w.data.slug} delay={i * 0.1}>
-              <ProjectCard work={w} />
-            </AnimatedSection>
-          ))}
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            {work.map((w, i) => (
+              <AnimatedSection key={w.data.slug} delay={i * 0.08}>
+                <ProjectCard work={w} onClick={() => setSelected(w)} />
+              </AnimatedSection>
+            ))}
+          </div>
         </div>
       </Container>
+
+      <ProjectSidebar work={selected} onClose={close} />
     </section>
   )
 }

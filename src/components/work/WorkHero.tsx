@@ -6,10 +6,6 @@ interface WorkHeroProps {
   content: string
 }
 
-function hasImage(url?: string) {
-  return url && url.length > 0 && (url.startsWith('http') || url.startsWith('data:') || url.startsWith('/'))
-}
-
 export default function WorkHero({ data, content }: WorkHeroProps) {
   // Extract first paragraph from markdown (before ## headings)
   const intro = content
@@ -58,17 +54,7 @@ export default function WorkHero({ data, content }: WorkHeroProps) {
 
       {/* Hero image */}
       <Container>
-        <div className="aspect-[8/5] w-full overflow-hidden bg-bg-secondary ring-1 ring-border">
-          {hasImage(data.heroImage) ? (
-            <img
-              src={data.heroImage}
-              alt={data.title}
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <div className="h-full w-full" />
-          )}
-        </div>
+        <div className="aspect-[8/5] w-full bg-bg-secondary ring-1 ring-border" />
       </Container>
     </>
   )

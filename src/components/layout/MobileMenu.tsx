@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollLock } from '@/hooks/useScrollLock'
+import ThemeToggle from './ThemeToggle'
 
 interface MobileMenuProps {
   open: boolean
@@ -58,6 +59,10 @@ export default function MobileMenu({ open, onClose, links }: MobileMenuProps) {
             ))}
           </nav>
 
+          {/* Theme toggle */}
+          <div className="px-4 pb-8">
+            <ThemeToggle />
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

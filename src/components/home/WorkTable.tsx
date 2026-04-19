@@ -1,35 +1,38 @@
 import Container from '@/components/layout/Container'
-import AnimatedSection from '@/components/common/AnimatedSection'
 import { workTable } from '@/content/work-table'
 
 export default function WorkTable() {
   return (
-    <section className="mt-16 md:mt-24">
+    <section className="border-t border-border py-12">
       <Container>
-        <AnimatedSection>
-          {/* Table header — 1fr/3fr grid matching nav + hero */}
-          <div className="grid grid-cols-[auto_1fr] gap-x-8 border-b border-border pb-3 md:grid-cols-[1fr_3fr] md:gap-x-0">
-            <span className="text-[0.875rem] tracking-wide text-text-secondary">Year</span>
-            <div className="flex justify-between">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-[1fr_3fr] md:gap-0">
+          {/* Left: sticky section label */}
+          <div className="self-start sticky top-16">
+            <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
+              More work
+            </p>
+          </div>
+
+          {/* Right: table rows */}
+          <div>
+            {/* Table header */}
+            <div className="flex justify-between border-b border-border pb-3">
               <span className="text-[0.875rem] tracking-wide text-text-secondary">Product</span>
               <span className="text-[0.875rem] tracking-wide text-text-secondary">Type</span>
             </div>
-          </div>
 
-          {/* Table rows */}
-          {workTable.map((entry, i) => (
-            <div
-              key={i}
-              className={`grid grid-cols-[auto_1fr] gap-x-8 py-4 transition-opacity duration-200 hover:opacity-60 md:grid-cols-[1fr_3fr] md:gap-x-0${i < workTable.length - 1 ? ' border-b border-border' : ''}`}
-            >
-              <span className="text-[0.875rem] tracking-wide text-text-secondary">{entry.year}</span>
-              <div className="flex justify-between">
+            {/* Table rows */}
+            {workTable.map((entry, i) => (
+              <div
+                key={i}
+                className={`flex justify-between py-4 transition-opacity duration-200 hover:opacity-60${i < workTable.length - 1 ? ' border-b border-border' : ''}`}
+              >
                 <span className="text-[0.875rem] tracking-wide text-text-primary">{entry.product}</span>
                 <span className="text-[0.875rem] tracking-wide text-text-secondary">{entry.type}</span>
               </div>
-            </div>
-          ))}
-        </AnimatedSection>
+            ))}
+          </div>
+        </div>
       </Container>
     </section>
   )

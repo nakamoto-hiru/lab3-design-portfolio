@@ -39,6 +39,16 @@ clients:
   - Whales Predict
   - Mention Network
   - GeoReport
+  - Sovico Group
+  - OpenCommerce Group
+  - JoomlArt
+recognition:
+  - title: Product Design Excellence
+    org: Whales Market
+    year: "2024"
+  - title: Design System Leadership
+    org: GalaxyOne
+    year: "2023"
 skills:
   summary: "Product Designer with strong experience in AI-driven and Web3 products, specializing in transforming complex data, models, and blockchain mechanics into clear, scalable user experiences."
   items:

@@ -43,6 +43,13 @@ export const profileFrontmatterSchema = z.object({
     })
   ),
   clients: z.array(z.string()).default([]),
+  recognition: z.array(
+    z.object({
+      title: z.string(),
+      org: z.string(),
+      year: z.string().optional(),
+    })
+  ).default([]),
   skills: z.object({
     summary: z.string(),
     items: z.array(z.string()),
