@@ -9,10 +9,19 @@ export default function Hero() {
     <section className="border-b border-border pt-12 pb-24">
       <AnimatedSection>
         <div className="grid grid-cols-1 sm:grid-cols-4">
-          {/* Col 1: label */}
+          {/* Col 1: label + location + availability */}
           <div className="px-8 py-0 sm:px-12">
             <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
               {profile.data.title}
+            </p>
+
+            <div className="mt-4 text-[0.75rem] leading-relaxed tracking-wide text-text-secondary">
+              <p>{profile.data.coordinates}</p>
+              <p>{profile.data.location}</p>
+            </div>
+
+            <p className="mt-4 text-[0.75rem] tracking-wide text-accent">
+              Open to Product / Systems Roles
             </p>
           </div>
 
@@ -33,7 +42,7 @@ export default function Hero() {
                   window.scrollTo({ top: y, behavior: 'smooth' })
                 }
                 }}
-                className="group inline-flex cursor-pointer items-center gap-3 border border-border px-6 py-4 text-[0.875rem] tracking-wide text-text-primary transition-colors duration-300 hover:border-text-tertiary"
+                className="group inline-flex cursor-pointer items-center gap-3 border border-border px-6 py-4 text-[0.875rem] tracking-wide text-text-primary transition-colors duration-300 hover:border-accent"
               >
                 <span>Explore my work</span><span className="text-text-tertiary">/2025-2026</span>
                 <svg
@@ -52,7 +61,7 @@ export default function Hero() {
 
               <Link
                 to="/profile"
-                className="group inline-flex items-center gap-3 border border-border px-6 py-4 text-[0.875rem] tracking-wide text-text-primary transition-colors duration-300 hover:border-text-tertiary"
+                className="group relative inline-flex items-center gap-3 overflow-hidden border border-border px-6 py-4 text-[0.875rem] tracking-wide text-text-primary transition-[border-color] duration-500 hover:border-accent"
               >
                 About me
                 <svg

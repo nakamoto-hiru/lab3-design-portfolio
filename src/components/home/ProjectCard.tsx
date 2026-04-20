@@ -19,7 +19,7 @@ export default function ProjectCard({ work, onClick }: ProjectCardProps) {
           {title}
         </span>
         <span className="mt-1 block text-[0.75rem] tracking-wide text-text-tertiary">
-          {type} &middot; {year}
+          {year}
         </span>
       </div>
 
@@ -31,7 +31,7 @@ export default function ProjectCard({ work, onClick }: ProjectCardProps) {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        className="absolute bottom-12 right-12 -translate-x-2 text-accent opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:opacity-100"
+        className="absolute top-12 right-12 -translate-x-2 scale-100 text-accent opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:scale-[4] group-hover:opacity-100"
       >
         <path d="M7 17L17 7" />
         <path d="M7 7h10v10" />

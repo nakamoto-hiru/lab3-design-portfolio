@@ -112,11 +112,11 @@ export default function Navbar() {
       {/* Nav bar — sticky top */}
       <header ref={headerRef as React.RefObject<HTMLElement>} className={cn('sticky top-0 z-50 w-full bg-bg border-t border-border transition-[border-color] duration-300', scrolled ? 'border-b border-b-border' : 'border-b border-b-transparent')}>
         <nav className="grid grid-cols-2 sm:grid-cols-4 [&>div]:transition-[padding] [&>div]:duration-300">
-          <div className={cn('px-8 text-[0.75rem] leading-relaxed tracking-wide text-text-secondary sm:px-12', scrolled ? 'py-6' : 'py-12')}>
+          <div className={cn('px-8 text-[0.875rem] leading-relaxed tracking-wide text-text-secondary sm:px-12', scrolled ? 'py-6' : 'py-12')}>
             Independent Designer
           </div>
 
-          <div className={cn('hidden px-12 text-[0.75rem] leading-relaxed tracking-wide sm:block', scrolled ? 'py-6' : 'py-12')}>
+          <div className={cn('hidden px-12 text-[0.875rem] leading-relaxed tracking-wide sm:block', scrolled ? 'py-6' : 'py-12')}>
             <Link
               to="/"
               className={cn(
@@ -130,7 +130,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className={cn('hidden px-12 text-[0.75rem] leading-relaxed tracking-wide sm:block', scrolled ? 'py-6' : 'py-12')}>
+          <div className={cn('hidden px-12 text-[0.875rem] leading-relaxed tracking-wide sm:block', scrolled ? 'py-6' : 'py-12')}>
             <Link
               to="/profile"
               className={cn(
@@ -144,7 +144,7 @@ export default function Navbar() {
             </Link>
           </div>
 
-          <div className={cn('hidden px-12 text-right text-[0.75rem] leading-relaxed tracking-wide text-text-tertiary sm:block', scrolled ? 'py-6' : 'py-12')}>
+          <div className={cn('hidden px-12 text-right text-[0.875rem] leading-relaxed tracking-wide text-text-tertiary sm:block', scrolled ? 'py-6' : 'py-12')}>
             <span>2026 Portfolio — V.2.1.0</span>
           </div>
 

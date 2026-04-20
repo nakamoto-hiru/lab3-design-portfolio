@@ -27,8 +27,8 @@ const placements: Placement[] = [
   { workIndex: 3, col: 3, row: 1, span: 1 }, // GeoReport 25%
   { workIndex: 2, col: 3, row: 2, span: 2 }, // Mention Network 50%
   { workIndex: 1, col: 2, row: 4, span: 2 }, // Whales Predict 50%
+  { workIndex: 4, col: 1, row: 4, span: 1 }, // Whales Fund 25%
   { workIndex: 5, col: 4, row: 4, span: 1 }, // Whales Mobile 25%
-  { workIndex: 4, col: 1, row: 5, span: 1 }, // Whales Fund 25%
   { workIndex: 6, col: 4, row: 5, span: 1 }, // JoomlArt 25%
 ]
 
@@ -61,7 +61,7 @@ export default function FeaturedGrid({ work }: FeaturedGridProps) {
   return (
     <section id="featured-work">
       <div
-        className="grid bg-border sm:grid-cols-4"
+        className="grid border-b border-border bg-border sm:grid-cols-4"
         style={{
           gridTemplateColumns: 'repeat(4, 1fr)',
           gridTemplateRows: 'repeat(5, auto)',
