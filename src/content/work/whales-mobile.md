@@ -13,7 +13,7 @@ tags:
 role: Product Design
 featured: true
 featuredOrder: 6
-color: "#f97316"
+galleryLayout: pattern
 ---
 
 Native mobile trading experience for the Whales ecosystem — bringing the full trading platform to iOS and Android with gesture-driven interactions and real-time market data.

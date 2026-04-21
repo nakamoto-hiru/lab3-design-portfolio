@@ -6,15 +6,27 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ work, onClick }: ProjectCardProps) {
-  const { title, type, year } = work.data
+  const { title, year, thumbnailImage } = work.data
 
   return (
     <button
       onClick={onClick}
-      className="group relative flex h-full w-full cursor-pointer flex-col justify-end bg-bg text-left transition-colors duration-500 hover:bg-bg-secondary"
+      className="group relative flex h-full w-full cursor-pointer flex-col justify-end overflow-hidden bg-bg text-left"
     >
+      {/* Background image */}
+      {thumbnailImage && (
+        <img
+          src={thumbnailImage}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover grayscale opacity-35 transition-all duration-500 group-hover:opacity-55 group-hover:grayscale-0 group-hover:scale-[1.03]"
+        />
+      )}
+
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-bg/95 via-bg/40 to-transparent" />
+
       {/* Title + meta — bottom-left */}
-      <div className="p-6 sm:p-8 md:p-12">
+      <div className="relative z-10 p-6 sm:p-8 md:p-12">
         <span className="block text-[0.875rem] font-medium tracking-wide text-text-primary transition-colors duration-300 group-hover:text-accent">
           {title}
         </span>
@@ -23,7 +35,7 @@ export default function ProjectCard({ work, onClick }: ProjectCardProps) {
         </span>
       </div>
 
-      {/* Arrow — hover reveal, bottom-right */}
+      {/* Arrow — hover reveal */}
       <svg
         width="16"
         height="16"
@@ -31,7 +43,7 @@ export default function ProjectCard({ work, onClick }: ProjectCardProps) {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        className="absolute top-6 right-6 -translate-x-2 scale-100 text-accent opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:scale-[4] group-hover:opacity-100 sm:top-8 sm:right-8 md:top-12 md:right-12"
+        className="absolute top-6 right-6 z-10 -translate-x-2 scale-100 text-accent opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:scale-[4] group-hover:opacity-100 sm:top-8 sm:right-8 md:top-12 md:right-12"
       >
         <path d="M7 17L17 7" />
         <path d="M7 7h10v10" />

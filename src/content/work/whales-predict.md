@@ -19,7 +19,6 @@ galleryImages:
   - "/images/whales-predict/gallery-2.png"
   - "/images/whales-predict/gallery-3.png"
 galleryLayout: full
-color: "#8b5cf6"
 ---
 
 Prediction Market for traders to place bets on token and event outcomes — an extension of the decision layer within the trading ecosystem. Redesigned the prediction mechanism at product level, focusing on pricing logic, risk clarity, and outcome modeling to optimize decision speed in volatile markets.

@@ -85,7 +85,7 @@ export default function ProjectSidebar({ work, onClose }: ProjectSidebarProps) {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="absolute top-0 right-0 bottom-0 w-[75%] overflow-y-auto bg-bg border-l border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              className="absolute top-0 right-0 bottom-0 w-full overflow-y-auto bg-bg border-l border-border [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:w-[75%]"
             >
             {/* Close */}
             <div className="sticky top-0 z-10 flex justify-end bg-bg">
@@ -100,7 +100,7 @@ export default function ProjectSidebar({ work, onClose }: ProjectSidebarProps) {
               </button>
             </div>
 
-            <div className="px-12 pb-16">
+            <div className="px-6 pb-16 sm:px-8 md:px-12">
               {/* Title */}
               <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-[1.1] tracking-tight text-text-primary">
                 {work.data.title}
@@ -170,17 +170,6 @@ export default function ProjectSidebar({ work, onClose }: ProjectSidebarProps) {
                 </div>
               </div>
 
-              {/* Tags */}
-              <div className="mt-10 flex flex-wrap gap-2">
-                {work.data.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="rounded border border-border px-3 py-1.5 text-[0.6875rem] tracking-wide text-text-tertiary"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
             </div>
           </motion.aside>
           </div>

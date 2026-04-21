@@ -130,10 +130,10 @@ export default function VibeCodeSection() {
                 <span className="text-[0.875rem] font-medium tracking-wide text-text-primary transition-colors duration-300 group-hover:text-accent">
                   {project.data.title}
                 </span>
-                <span className="mt-1 text-[0.75rem] tracking-wide text-text-secondary">
+                <span className="mt-1 text-[0.875rem] tracking-wide text-text-secondary">
                   {project.content.split('\n')[0]}
                 </span>
-                <span className="mt-3 text-[0.7rem] tracking-wide text-text-tertiary">
+                <span className="mt-3 text-[0.75rem] tracking-wide text-text-tertiary">
                   {project.data.tags.join(' · ')}
                 </span>
 

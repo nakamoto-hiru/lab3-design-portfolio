@@ -1,121 +1,46 @@
+import { useRef } from 'react'
+import { useLocation } from 'react-router-dom'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import AnimatedSection from '@/components/common/AnimatedSection'
-
-const history = [
-  {
-    company: 'Remote',
-    period: '03.2023 – Present',
-    role: 'Product Designer',
-    location: 'US',
-  },
-  {
-    company: 'GalaxyOne – Sovico Group',
-    period: '09.2022 – 03.2023',
-    role: 'Product Designer',
-    location: 'HCMC',
-  },
-  {
-    company: 'OpenCommerce Group',
-    period: '06.2022 – 08.2022',
-    role: 'Product Designer',
-    location: 'Hanoi',
-  },
-  {
-    company: 'JoomlArt',
-    period: '08.2008 – 06.2022',
-    role: 'Lead UI/UX Designer',
-    location: 'Hanoi',
-  },
-]
-
-const skills = [
-  'Product Design',
-  'Trading Systems',
-  'AI-Native Products',
-  'Design Systems',
-  'UX Research',
-  'Data Modeling',
-  'Prototyping',
-  'Front-end Development',
-]
-
-const contact = [
-  { label: 'slug@example.com', url: 'mailto:slug@example.com' },
-  { label: 'LinkedIn', url: 'https://linkedin.com/in/slugmacro' },
-]
+import LiquidText from '@/components/common/LiquidText'
 
 export default function Footer() {
+  const location = useLocation()
+  const isProfile = location.pathname === '/profile'
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  })
+  const y = useTransform(scrollYProgress, [0, 1], [80, -80])
+
   return (
     <footer>
-      <AnimatedSection>
-        <div className="-mt-px grid grid-cols-1 border-t border-b border-border sm:grid-cols-4">
-          {/* Col 1: intro blurb */}
-          <div className="border-b border-border px-6 py-6 sm:border-b-0 sm:border-r sm:px-8 sm:py-8 md:px-12 md:py-12">
-            <p className="max-w-[30ch] text-[clamp(1.125rem,1.5vw,1.5rem)] leading-[1.4] font-light text-text-primary">
-              Designing at the intersection of complex systems and clear thinking — where trading logic, AI models, and user intuition converge into products that simply work.
-            </p>
+      {!isProfile && (
+        <AnimatedSection>
+          <div
+            ref={sectionRef as React.RefObject<HTMLDivElement>}
+            className="overflow-hidden border-b border-border bg-bg px-6 py-24 sm:px-8 sm:py-36 md:px-12 md:py-48"
+          >
+            <motion.div style={{ y }}>
+              <LiquidText
+                radius={0.2}
+                className="text-text-primary leading-[1] font-bold"
+                style={{
+                  fontFamily: "'Bodoni Moda', serif",
+                  fontSize: 'clamp(1.8rem, 5.5vw, 7rem)',
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                Simplicity is the<br />ultimate sophistication.
+              </LiquidText>
+              <p className="mt-8 text-[0.875rem] tracking-wide text-text-tertiary">
+                — Leonardo da Vinci
+              </p>
+            </motion.div>
           </div>
-
-          {/* Col 2: History */}
-          <div className="border-b border-border px-6 py-6 sm:border-b-0 sm:border-r sm:px-8 sm:py-8 md:px-12 md:py-12">
-            <p className="mb-6 text-[0.875rem] font-medium tracking-wide text-text-primary">
-              History
-            </p>
-            <div className="space-y-6">
-              {history.map((h) => (
-                <div key={h.company}>
-                  <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
-                    {h.company}
-                  </p>
-                  <p className="mt-1 text-[0.75rem] tracking-wide text-text-secondary">
-                    {h.period}
-                  </p>
-                  <p className="text-[0.75rem] tracking-wide text-text-secondary">
-                    {h.role}
-                  </p>
-                  <p className="mt-2 text-[0.75rem] tracking-wide text-text-secondary">
-                    {h.location}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Col 3: Skills */}
-          <div className="border-b border-border px-6 py-6 sm:border-b-0 sm:border-r sm:px-8 sm:py-8 md:px-12 md:py-12">
-            <p className="mb-6 text-[0.875rem] font-medium tracking-wide text-text-primary">
-              Skills
-            </p>
-            <ul className="space-y-2">
-              {skills.map((s) => (
-                <li key={s} className="text-[0.75rem] tracking-wide text-text-secondary">
-                  {s}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 4: Contact */}
-          <div className="px-6 py-6 sm:px-8 sm:py-8 md:px-12 md:py-12">
-            <p className="mb-6 text-[0.875rem] font-medium tracking-wide text-text-primary">
-              Contact
-            </p>
-            <ul className="space-y-2">
-              {contact.map((c) => (
-                <li key={c.label}>
-                  <a
-                    href={c.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[0.75rem] tracking-wide text-text-secondary transition-colors duration-300 hover:text-text-primary"
-                  >
-                    {c.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </AnimatedSection>
+        </AnimatedSection>
+      )}
 
       {/* Bottom bar */}
       <div className="flex items-center justify-between px-6 py-6 sm:px-8 md:px-12">

@@ -3,8 +3,6 @@ import ProfileHero from '@/components/profile/ProfileHero'
 import InfoPanel from '@/components/profile/InfoPanel'
 import Skills from '@/components/profile/Skills'
 import Experience from '@/components/profile/Experience'
-import Clients from '@/components/profile/Clients'
-import Recognition from '@/components/profile/Recognition'
 import { getProfile } from '@/content/loader'
 
 export default function ProfilePage() {
@@ -26,16 +24,6 @@ export default function ProfilePage() {
       <AnimatedSection delay={0.3}>
         <Experience experience={profile.data.experience} />
       </AnimatedSection>
-      {profile.data.clients.length > 0 && (
-        <AnimatedSection delay={0.4}>
-          <Clients clients={profile.data.clients} />
-        </AnimatedSection>
-      )}
-      {profile.data.recognition.length > 0 && (
-        <AnimatedSection delay={0.5}>
-          <Recognition recognition={profile.data.recognition} />
-        </AnimatedSection>
-      )}
     </>
   )
 }

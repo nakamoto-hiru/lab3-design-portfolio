@@ -15,7 +15,6 @@ export const workFrontmatterSchema = z.object({
   heroImage: z.string().optional(),
   galleryImages: z.array(z.string()).default([]),
   galleryLayout: z.enum(['pattern', 'full']).default('pattern'),
-  color: z.string().optional(),
   externalUrl: z.string().optional(),
 })
 
@@ -53,6 +52,8 @@ export const profileFrontmatterSchema = z.object({
   skills: z.object({
     summary: z.string(),
     items: z.array(z.string()),
+    tools: z.array(z.string()).default([]),
+    tags: z.array(z.string()).default([]),
   }).optional(),
   homeIntro: z.string().optional(),
 })

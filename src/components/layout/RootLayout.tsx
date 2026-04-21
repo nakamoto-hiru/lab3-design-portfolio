@@ -19,12 +19,14 @@ export default function RootLayout() {
         className="fixed top-0 bottom-0 z-[80] w-px bg-border"
         style={{ left: 'min(var(--container-max), 100vw)' }}
       />
-      <div className="relative w-full max-w-[var(--container-max)] min-h-screen">
+      <div className="relative w-full max-w-[var(--container-max)]">
         <Navbar />
         <main className="relative z-10 bg-bg">
           <Outlet />
         </main>
-        <Footer />
+        <div className="sticky bottom-0 z-[5] bg-bg">
+          <Footer />
+        </div>
       </div>
     </>
   )

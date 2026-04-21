@@ -40,7 +40,7 @@ export default function Navbar() {
       <div
         ref={logoSectionRef as React.RefObject<HTMLDivElement>}
         className="relative"
-        style={{ height: 'calc(clamp(5rem, 24vw, 32rem) * 0.8 * 2 + 3rem + clamp(5rem, 24vw, 32rem) * 0.3)' }}
+        style={{ height: 'calc(clamp(4rem, 18vw, 22rem) * 0.8 * 2 + 3rem + clamp(4rem, 18vw, 22rem) * 0.3)' }}
       >
         <div className="fixed top-0 left-0 z-0 w-full max-w-[var(--container-max)]">
           <div className="px-6 sm:px-8 md:px-12">
@@ -50,7 +50,7 @@ export default function Navbar() {
                   className="select-none text-text-primary leading-[0.8] font-bold cursor-pointer"
                   style={{
                     fontFamily: "'Bodoni Moda', serif",
-                    fontSize: 'clamp(5rem, 24vw, 32rem)',
+                    fontSize: 'clamp(4rem, 18vw, 22rem)',
                     letterSpacing: '-0.05em',
                   }}
                 >

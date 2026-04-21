@@ -22,7 +22,6 @@ galleryImages:
   - "/images/mention-network/gallery-5.png"
   - "/images/mention-network/gallery-6.png"
 galleryLayout: full
-color: "#06b6d4"
 ---
 
 AI Visibility & Generative Engine Optimization (GEO) platform helping brands track and optimize how they appear in AI-generated answers across ChatGPT, Gemini, Grok, and other models. Designed the product for collecting, structuring, and surfacing AI mention data — turning raw interaction signals into actionable visibility insights.

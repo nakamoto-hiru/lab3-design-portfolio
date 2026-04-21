@@ -17,50 +17,50 @@ const FRAGMENT_SHADER = `
   uniform float u_time;
   uniform vec2 u_mouse;
   uniform float u_hover;
+  uniform float u_radius;
 
   void main() {
     vec2 uv = v_texCoord;
-    float strength = u_hover;
 
-    // Water ripple from mouse
+    // Distance from mouse — effect only within radius
     float dist = distance(uv, u_mouse);
-    float ripple = sin(dist * 37.5 - u_time * 6.0) * exp(-dist * 4.5);
+    float radius = u_radius;
+    float proximity = smoothstep(radius, 0.0, dist);
+    float strength = u_hover * proximity;
 
-    // Organic wave layers
-    float nx = sin(uv.y * 18.0 + u_time * 3.0) * 0.012;
-    float ny = cos(uv.x * 15.0 + u_time * 2.25) * 0.009;
+    // Water ripple from mouse — localized
+    float ripple = sin(dist * 37.5 - u_time * 3.6) * exp(-dist * 4.5);
+
+    // Organic wave layers — only near cursor
+    float nx = sin(uv.y * 18.0 + u_time * 1.8) * 0.012;
+    float ny = cos(uv.x * 15.0 + u_time * 1.35) * 0.009;
 
     vec2 offset = vec2(
       ripple * 0.045 + nx,
       ripple * 0.03 + ny
     ) * strength;
 
-    // Chromatic aberration — multi-direction split
-    float aberration = strength * 0.04;
+    // RGB split — 3 copies of text, each offset in different direction, pure R/G/B
+    float spread = strength * 0.06;
     vec2 dir = normalize(uv - u_mouse + 0.001);
+
+    // Red copy — offset along mouse direction
+    float r = texture2D(u_texture, uv + offset + dir * spread).a * 1.0;
+
+    // Green copy — offset perpendicular
     vec2 perp = vec2(-dir.y, dir.x);
+    float g = texture2D(u_texture, uv + offset + perp * spread).a * 1.0;
 
-    // 5-way chromatic split — red, yellow, green, cyan, blue, magenta
-    float r = texture2D(u_texture, uv + offset + dir * aberration).r;
-    float g = texture2D(u_texture, uv + offset).g;
-    float b = texture2D(u_texture, uv + offset - dir * aberration).b;
+    // Blue copy — offset opposite
+    float b = texture2D(u_texture, uv + offset - dir * spread * 0.8).a * 1.0;
 
-    // Red/orange ghost — far right of mouse dir
-    float rGhost = texture2D(u_texture, uv + offset + dir * aberration * 1.8).a;
-    r += rGhost * 50.0 * strength;
-    g += rGhost * 0.1 * strength;
+    // Original white text on top (where no offset)
+    float original = texture2D(u_texture, uv + offset).a;
+    r = max(r, original);
+    g = max(g, original);
+    b = max(b, original);
 
-    // Magenta ghost — perpendicular
-    float mGhost = texture2D(u_texture, uv + offset + perp * aberration * 1.5).a;
-    r += mGhost * 0.4 * strength;
-    b += mGhost * 0.3 * strength;
-
-    // Cyan ghost — opposite perpendicular
-    float cGhost = texture2D(u_texture, uv + offset - perp * aberration * 1.2).a;
-    g += cGhost * 0.3 * strength;
-    b += cGhost * 0.4 * strength;
-
-    float a = texture2D(u_texture, uv + offset).a;
+    float a = max(max(r, g), b);
 
     gl_FragColor = vec4(r, g, b, a);
   }
@@ -78,9 +78,9 @@ function measureFontMetrics(font: string) {
   return { ascent: m.actualBoundingBoxAscent, descent: m.actualBoundingBoxDescent }
 }
 
-interface Props { children: React.ReactNode; className?: string; style?: React.CSSProperties }
+interface Props { children: React.ReactNode; className?: string; style?: React.CSSProperties; radius?: number }
 
-export default function LiquidText({ children, className, style }: Props) {
+export default function LiquidText({ children, className, style, radius = 0.25 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -132,7 +132,8 @@ export default function LiquidText({ children, className, style }: Props) {
     const lines: string[] = []; let cur = ''
     textEl.childNodes.forEach(n => { if (n.nodeName === 'BR') { lines.push(cur); cur = '' } else cur += n.textContent ?? '' })
     if (cur) lines.push(cur)
-    const lh = fontSize * 0.8
+    const computedLH = parseFloat(cs.lineHeight)
+    const lh = isNaN(computedLH) ? fontSize * 1 : computedLH
     const padTop = metrics.ascent * 0.15  // Extra space for tall glyphs
     const totalH = padTop + lh * lines.length + metrics.descent
     const w = Math.round(rect.width * dpr); const h = Math.round(totalH * dpr)
@@ -154,6 +155,7 @@ export default function LiquidText({ children, className, style }: Props) {
     gl.uniform1f(gl.getUniformLocation(p, 'u_time'), 0)
     gl.uniform2f(gl.getUniformLocation(p, 'u_mouse'), 0.5, 0.5)
     gl.uniform1f(gl.getUniformLocation(p, 'u_hover'), 0)
+    gl.uniform1f(gl.getUniformLocation(p, 'u_radius'), radius)
     gl.drawArrays(gl.TRIANGLES, 0, 6)
   }, [])
 
@@ -165,6 +167,7 @@ export default function LiquidText({ children, className, style }: Props) {
     gl.uniform1f(gl.getUniformLocation(p, 'u_time'), time)
     gl.uniform2f(gl.getUniformLocation(p, 'u_mouse'), mouseRef.current.x, mouseRef.current.y)
     gl.uniform1f(gl.getUniformLocation(p, 'u_hover'), hoverRef.current)
+    gl.uniform1f(gl.getUniformLocation(p, 'u_radius'), radius)
     gl.drawArrays(gl.TRIANGLES, 0, 6)
     if (hoverTargetRef.current === 0 && hoverRef.current < 0.01) { hoverRef.current = 0; renderStatic(); return }
     rafRef.current = requestAnimationFrame(render)

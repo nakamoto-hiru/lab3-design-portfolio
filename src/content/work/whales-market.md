@@ -12,6 +12,7 @@ tags:
 role: Product Design
 featured: true
 featuredOrder: 1
+galleryLayout: pattern
 thumbnailImage: "/images/whales-market/thumbnail.png"
 heroImage: "/images/whales-market/hero.png"
 galleryImages:
@@ -21,7 +22,6 @@ galleryImages:
   - "/images/whales-market/gallery-4.png"
   - "/images/whales-market/gallery-5.png"
   - "/images/whales-market/gallery-6.png"
-color: "#4c48ff"
 ---
 
 Advanced Trading Platform for Pre-Market trading, focused on pro traders and high-frequency users. Designed the end-to-end experience across orderbook, position management, portfolio tracking, and P2P matching — handling multi-chain settlement complexity in real-time volatile markets.

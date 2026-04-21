@@ -1,5 +1,3 @@
-import Container from '@/components/layout/Container'
-
 interface RecognitionItem {
   title: string
   org: string
@@ -14,12 +12,14 @@ export default function Recognition({ recognition }: RecognitionProps) {
   if (recognition.length === 0) return null
 
   return (
-    <section className="mt-16 md:mt-24">
-      <Container>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-[1fr_3fr] sm:gap-0">
+    <section className="border-t border-border py-12 sm:py-16 md:py-24">
+      <div className="grid grid-cols-1 sm:grid-cols-4">
+        <div className="px-6 sm:px-8 md:px-12">
           <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
             Recognition
           </p>
+        </div>
+        <div className="col-span-1 mt-4 px-6 sm:col-span-2 sm:mt-0 sm:px-8 md:px-12">
           <div className="space-y-4">
             {recognition.map((item, i) => (
               <div
@@ -43,7 +43,7 @@ export default function Recognition({ recognition }: RecognitionProps) {
             ))}
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   )
 }

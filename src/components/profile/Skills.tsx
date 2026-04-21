@@ -1,4 +1,3 @@
-import Container from '@/components/layout/Container'
 import type { ProfileFrontmatter } from '@/content/schema'
 
 interface SkillsProps {
@@ -20,33 +19,31 @@ function renderBold(text: string) {
 
 export default function Skills({ skills }: SkillsProps) {
   return (
-    <section className="border-t border-border py-16 md:py-24">
-      <Container>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-[1fr_3fr] sm:gap-0">
-          {/* Label */}
+    <section className="border-t border-border py-12 sm:py-16 md:py-24">
+      <div className="grid grid-cols-1 sm:grid-cols-4">
+        <div className="px-6 sm:px-8 md:px-12">
           <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
             Skills
           </p>
-
-          {/* Content */}
-          <div>
-            <p className="max-w-[55ch] text-[0.875rem] leading-[1.6] tracking-wide text-text-primary">
-              {skills.summary}
-            </p>
-
-            <ul className="mt-6 max-w-[55ch] list-disc space-y-2 pl-4">
-              {skills.items.map((item, i) => (
-                <li
-                  key={i}
-                  className="text-[0.875rem] leading-[1.6] tracking-wide text-text-primary"
-                >
-                  {renderBold(item)}
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
-      </Container>
+
+        <div className="col-span-1 mt-4 px-6 sm:col-span-2 sm:mt-0 sm:px-8 md:px-12">
+          <p className="text-[0.875rem] leading-[1.6] tracking-wide text-text-primary">
+            {skills.summary}
+          </p>
+
+          <ul className="mt-6 list-disc space-y-2 pl-4">
+            {skills.items.map((item, i) => (
+              <li
+                key={i}
+                className="text-[0.875rem] leading-[1.6] tracking-wide text-text-primary"
+              >
+                {renderBold(item)}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </section>
   )
 }
