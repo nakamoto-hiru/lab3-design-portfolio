@@ -1,4 +1,6 @@
+import { useRef } from 'react'
 import type { WorkFrontmatter } from '@/content/schema'
+import RippleImage, { type RippleImageHandle } from '@/components/common/RippleImage'
 
 interface ProjectCardProps {
   work: { data: WorkFrontmatter }
@@ -7,19 +9,32 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ work, onClick }: ProjectCardProps) {
   const { title, year, thumbnailImage } = work.data
+  const rippleRef = useRef<RippleImageHandle>(null)
 
   return (
     <button
       onClick={onClick}
+      onMouseEnter={(e) => {
+        rippleRef.current?.dropAt(e.clientX, e.clientY)
+        rippleRef.current?.setHover(true)
+      }}
+      onMouseMove={(e) => {
+        rippleRef.current?.dropAt(e.clientX, e.clientY)
+      }}
+      onMouseLeave={() => {
+        rippleRef.current?.setHover(false)
+      }}
       className="group relative flex h-full w-full cursor-pointer flex-col justify-end overflow-hidden bg-bg text-left"
     >
-      {/* Background image */}
+      {/* Background image with ripple effect */}
       {thumbnailImage && (
-        <img
-          src={thumbnailImage}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover grayscale opacity-35 transition-all duration-500 group-hover:opacity-55 group-hover:grayscale-0 group-hover:scale-[1.03]"
-        />
+        <div className="absolute inset-0 grayscale opacity-50 transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-[1.03]">
+          <RippleImage
+            ref={rippleRef}
+            src={thumbnailImage}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        </div>
       )}
 
       {/* Gradient overlay */}

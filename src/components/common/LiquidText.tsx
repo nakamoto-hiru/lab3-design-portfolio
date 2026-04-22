@@ -136,14 +136,17 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
     const lh = isNaN(computedLH) ? fontSize * 1 : computedLH
     const padTop = metrics.ascent * 0.15  // Extra space for tall glyphs
     const totalH = padTop + lh * lines.length + metrics.descent
-    const w = Math.round(rect.width * dpr); const h = Math.round(totalH * dpr)
+    // Extra padding so the liquid/RGB-split effect doesn't clip at edges
+    const pad = Math.round(fontSize * 0.25)
+    const w = Math.round(rect.width * dpr + pad * 2 * dpr); const h = Math.round(totalH * dpr + pad * 2 * dpr)
     glCanvas.width = w; glCanvas.height = h
-    glCanvas.style.width = `${rect.width}px`; glCanvas.style.height = `${totalH}px`
+    glCanvas.style.width = `${rect.width + pad * 2}px`; glCanvas.style.height = `${totalH + pad * 2}px`
+    glCanvas.style.left = `${-pad}px`; glCanvas.style.top = `${-pad}px`
     gl.viewport(0, 0, w, h)
     const off = document.createElement('canvas'); off.width = w; off.height = h
     const ctx = off.getContext('2d')!; ctx.scale(dpr, dpr); ctx.font = font; ctx.fillStyle = cs.color; ctx.textBaseline = 'top'
     if (cs.letterSpacing !== 'normal' && 'letterSpacing' in ctx) (ctx as CanvasRenderingContext2D).letterSpacing = cs.letterSpacing
-    lines.forEach((l, i) => ctx.fillText(l, 0, padTop + i * lh))
+    lines.forEach((l, i) => ctx.fillText(l, pad, pad + padTop + i * lh))
     gl.bindTexture(gl.TEXTURE_2D, textureRef.current)
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, off)
     setCanvasReady(true)
@@ -194,7 +197,7 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
   }, [])
 
   return (
-    <div ref={containerRef} className="relative cursor-pointer" onMouseEnter={onEnter} onMouseLeave={onLeave} onMouseMove={onMove}>
+    <div ref={containerRef} className="relative cursor-pointer overflow-visible" onMouseEnter={onEnter} onMouseLeave={onLeave} onMouseMove={onMove}>
       <div ref={textRef} className={className} style={{ ...style, visibility: canvasReady ? 'hidden' : 'visible' }}>{children}</div>
       <canvas ref={canvasRef} className="absolute top-0 left-0 pointer-events-none" />
     </div>

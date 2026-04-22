@@ -12,7 +12,7 @@ tags:
 role: Product Design
 featured: true
 featuredOrder: 2
-thumbnailImage: "/images/whales-predict/thumbnail.png"
+thumbnailImage: "/images/whales-predict/wpredict.png"
 heroImage: "/images/whales-predict/hero.png"
 galleryImages:
   - "/images/whales-predict/gallery-1.png"
