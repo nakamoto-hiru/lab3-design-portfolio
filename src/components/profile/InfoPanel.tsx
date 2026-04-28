@@ -34,32 +34,23 @@ export default function InfoPanel({ data }: InfoPanelProps) {
               >
                 {data.email}
               </a>
-              {data.socialLinks.map((link) => (
+              {data.phone && (
                 <a
-                  key={link.label}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`tel:${data.phone.replace(/\s+/g, '')}`}
                   className="text-[0.875rem] tracking-wide text-text-primary underline decoration-accent underline-offset-4 transition-opacity hover:opacity-60"
                 >
-                  {link.label}
+                  {data.phone}
                 </a>
-              ))}
-            </div>
-
-            {/* Location */}
-            <div>
-              <p className="text-[0.875rem] tracking-wide text-text-secondary">
-                {data.coordinates}
-              </p>
-              <p className="text-[0.875rem] tracking-wide text-text-secondary">
-                {data.location}
-              </p>
+              )}
             </div>
 
             {/* Availability */}
             {data.availability_label && (
-              <p className="text-[0.875rem] tracking-wide text-accent">
+              <p className="flex items-center gap-3 text-[0.875rem] tracking-wide text-accent">
+                <span className="relative inline-flex h-2 w-2 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                </span>
                 {data.availability_label}
               </p>
             )}

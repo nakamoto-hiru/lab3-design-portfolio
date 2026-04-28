@@ -8,9 +8,7 @@ email: l4d.design.team@gmail.com
 phone: "+84 866 206 999"
 availability: available
 availability_label: "Open to new projects & collaborations"
-socialLinks:
-  - label: LinkedIn
-    url: https://linkedin.com/in/slugmacro
+socialLinks: []
 services:
   - Product Design
   - UI/UX

@@ -54,18 +54,6 @@ export default function Hero() {
               </p>
             )}
 
-            {profile.data.services.length > 0 && (
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {profile.data.services.map((s) => (
-                  <li
-                    key={s}
-                    className="rounded-full border border-border px-3 py-1 text-[0.75rem] tracking-wide text-text-secondary"
-                  >
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            )}
           </div>
 
           {/* Cols 2-3: intro + CTA (50%) */}

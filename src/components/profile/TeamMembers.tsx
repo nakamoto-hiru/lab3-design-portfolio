@@ -1,33 +1,33 @@
 const teamMembers = [
   {
-    name: 'Hiru Nakamoto',
-    role: 'Creative Director',
-    bio: 'Sets the creative vision and design strategy for every project. Bridges business goals with user-centered thinking to shape products that resonate.',
-    image: '/images/team/nakamoto.svg',
-    linkedin: 'https://linkedin.com/in/',
+    name: "Hiru Nakamoto",
+    role: "Creative Director",
+    bio: "Sets the creative vision and design strategy for every project. Bridges business goals with user-centered thinking to shape products that resonate.",
+    image: "/images/team/nakamoto.svg",
+    linkedin: "https://linkedin.com/in/",
   },
   {
-    name: 'Slug Macro',
-    role: 'Lead Product Designer',
-    bio: 'Owns the end-to-end product design process — from research and architecture to high-fidelity UI systems. Specializes in fintech and AI-native interfaces.',
-    image: '/images/team/member-2.svg',
-    linkedin: 'https://linkedin.com/in/slugmacro',
+    name: "Slug Macro",
+    role: "Lead Product Designer",
+    bio: "Owns the end-to-end product design process — from research and architecture to high-fidelity UI systems. Specializes in fintech and AI-native interfaces.",
+    image: "/images/team/member-2.svg",
+    linkedin: "https://linkedin.com/in/slugmacro",
   },
   {
-    name: 'Hazel Taylor',
-    role: 'Senior UX Designer',
-    bio: 'Drives user research, interaction flows, and usability testing. Turns complex data into clear, intuitive experiences across web and mobile platforms.',
-    image: '/images/team/member-3.svg',
-    linkedin: 'https://linkedin.com/in/',
+    name: "Hazel Taylor",
+    role: "Senior UX Designer",
+    bio: "Drives user research, interaction flows, and usability testing. Turns complex data into clear, intuitive experiences across web and mobile platforms.",
+    image: "/images/team/member-3.svg",
+    linkedin: "https://linkedin.com/in/",
   },
   {
-    name: 'Sophie Bulock',
-    role: 'UI Designer',
-    bio: 'Crafts pixel-perfect interfaces, component libraries, and visual systems. Ensures every detail aligns with the design language and brand identity.',
-    image: '/images/team/member-4.svg',
-    linkedin: 'https://linkedin.com/in/',
+    name: "Sophie Bulock",
+    role: "UI Designer",
+    bio: "Crafts pixel-perfect interfaces, component libraries, and visual systems. Ensures every detail aligns with the design language and brand identity.",
+    image: "/images/team/member-4.svg",
+    linkedin: "https://linkedin.com/in/",
   },
-]
+];
 
 export default function TeamMembers() {
   return (
@@ -43,7 +43,7 @@ export default function TeamMembers() {
           <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 sm:gap-x-8">
             {teamMembers.map((member) => (
               <div key={member.name} className="flex flex-col">
-                <div className="aspect-[3/4] w-full overflow-hidden bg-bg-secondary">
+                <div className="aspect-[3/4] w-full overflow-hidden bg-white">
                   <img
                     src={member.image}
                     alt={member.name}
@@ -77,5 +77,5 @@ export default function TeamMembers() {
         </div>
       </div>
     </section>
-  )
+  );
 }
