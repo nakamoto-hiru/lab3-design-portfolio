@@ -17,6 +17,7 @@ const sideProjects: Array<{ data: WorkFrontmatter; content: string }> = [
       featured: false,
       galleryImages: [],
       galleryLayout: 'pattern',
+      galleryTheme: 'dark',
     },
     content: `ASCII art, parallax scrolling, scramble animations — built entirely with AI pair programming.
 
@@ -47,6 +48,7 @@ const sideProjects: Array<{ data: WorkFrontmatter; content: string }> = [
       featured: false,
       galleryImages: [],
       galleryLayout: 'pattern',
+      galleryTheme: 'dark',
     },
     content: `Conversational UI with streaming responses, markdown rendering, and code highlighting.
 
@@ -70,6 +72,7 @@ const sideProjects: Array<{ data: WorkFrontmatter; content: string }> = [
       featured: false,
       galleryImages: [],
       galleryLayout: 'pattern',
+      galleryTheme: 'dark',
     },
     content: `Tool that extracts design tokens from Figma and generates Tailwind config automatically.
 
@@ -93,6 +96,7 @@ const sideProjects: Array<{ data: WorkFrontmatter; content: string }> = [
       featured: false,
       galleryImages: [],
       galleryLayout: 'pattern',
+      galleryTheme: 'dark',
     },
     content: `Real-time analytics dashboard with interactive charts and natural language queries.
 
