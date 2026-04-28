@@ -82,7 +82,7 @@ homeIntro:
   - "We design digital products end-to-end — from research and data modeling to architecture, UX flows, and scalable UI systems."
   - "Our approach is built on lean thinking, strong logic, and precise execution — where clarity meets structure, and ideas turn into real, high-performance products."
   - "We don't just design. We build alongside the product."
-  - "Focused on fintech, DeFi, and AI-native systems — crafting experiences that make complex data feel simple, intuitive, and actionable."
+  - "Focused on Fintech, DeFi, and AI-native systems — crafting experiences that make complex data feel simple, intuitive, and actionable."
 ---
 
 Product Designer focused on trading systems and AI-native products, with full ownership from strategy to execution. I design at the system level — from research, data modeling, architecture logic, UX flows to actual implementation with AI tools.

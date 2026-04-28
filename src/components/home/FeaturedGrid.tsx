@@ -22,14 +22,15 @@ interface Placement {
   span: number
 }
 
-// Sorted order: 0=WM, 1=WP, 2=MN, 3=GR, 4=WF, 5=WMob, 6=JA
+// Sorted order: 0=WM, 1=WP, 2=MN, 3=WMob, 4=WF, 5=GR, 6=JA, 7=WM V.3
 const placements: Placement[] = [
   { workIndex: 0, col: 1, row: 1, span: 2 }, // Whales Market 50%
-  { workIndex: 3, col: 3, row: 1, span: 1 }, // GeoReport 25%
+  { workIndex: 3, col: 3, row: 1, span: 1 }, // 25%
   { workIndex: 2, col: 3, row: 2, span: 2 }, // Mention Network 50%
+  { workIndex: 7, col: 2, row: 3, span: 1 }, // Whales Market V.3 25%
   { workIndex: 1, col: 2, row: 4, span: 2 }, // Whales Predict 50%
   { workIndex: 4, col: 1, row: 4, span: 1 }, // Whales Fund 25%
-  { workIndex: 5, col: 4, row: 4, span: 1 }, // Whales Mobile 25%
+  { workIndex: 5, col: 4, row: 4, span: 1 }, // 25%
   { workIndex: 6, col: 4, row: 5, span: 1 }, // JoomlArt 25%
 ]
 
