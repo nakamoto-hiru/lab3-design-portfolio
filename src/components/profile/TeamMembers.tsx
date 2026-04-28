@@ -3,7 +3,7 @@ const teamMembers = [
     name: 'Hiru Nakamoto',
     role: 'Creative Director',
     bio: 'Sets the creative vision and design strategy for every project. Bridges business goals with user-centered thinking to shape products that resonate.',
-    image: '/images/team/member-1.svg',
+    image: '/images/team/nakamoto.svg',
     linkedin: 'https://linkedin.com/in/',
   },
   {

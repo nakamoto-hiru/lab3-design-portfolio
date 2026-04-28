@@ -1,112 +1,47 @@
 import { useState, useCallback } from 'react'
 import AnimatedSection from '@/components/common/AnimatedSection'
+import ProjectCard from './ProjectCard'
 import ProjectSidebar from './ProjectSidebar'
+import { WireframePolyhedron } from '@/components/common/WireframeShapes'
 import type { WorkFrontmatter } from '@/content/schema'
 
+// Placeholder skeletons — fill subtitle/client/type/tags/role/content later.
+function placeholder(slug: string, title: string, year: string): { data: WorkFrontmatter; content: string } {
+  return {
+    data: {
+      slug,
+      title,
+      subtitle: 'TBD',
+      year,
+      client: 'TBD',
+      type: 'TBD',
+      tags: [],
+      role: 'TBD',
+      featured: false,
+      galleryImages: [],
+      galleryLayout: 'pattern',
+      galleryTheme: 'dark',
+    },
+    content: 'TBD — short project intro.',
+  }
+}
+
 const sideProjects: Array<{ data: WorkFrontmatter; content: string }> = [
-  {
-    data: {
-      slug: 'portfolio-terminal',
-      title: 'Portfolio Terminal',
-      subtitle: 'Personal portfolio with terminal aesthetics',
-      year: '2026',
-      client: 'Personal',
-      type: 'Side Project',
-      tags: ['React', 'Tailwind', 'Framer Motion'],
-      role: 'Design & Development',
-      featured: false,
-      galleryImages: [],
-      galleryLayout: 'pattern',
-      galleryTheme: 'dark',
-    },
-    content: `ASCII art, parallax scrolling, scramble animations — built entirely with AI pair programming.
+  placeholder('alter-2025', 'Alter', '2025'),
+  placeholder('gaimes-2025', 'Gaimes', '2025'),
+  placeholder('bink-ai-2025', 'Bink AI', '2025'),
+  placeholder('video-fi-2024', 'Video.Fi', '2024'),
+  placeholder('gm-ai-2025', 'GM.AI', '2025'),
+]
 
-## Scope
+// Bento 3-col, all 1×1 squares — auto-flow:
+//
+// Cols:     1          2          3
+// Row 1: [ Alter   ] [ Gaimes ] [ Bink AI ]
+// Row 2: [ Video.Fi ] [ GM.AI ] [  deco   ]
 
-- Designed and built a portfolio site with terminal-inspired aesthetics
-- Implemented ASCII logo with hover scramble effect
-- Built bento grid layout with checkerboard pattern
-- Created smooth scroll interactions and sticky header
-
-## Stack
-
-- React 19 + TypeScript + Vite 7
-- Tailwind CSS v4
-- Framer Motion for animations
-- Deployed on Vercel`,
-  },
-  {
-    data: {
-      slug: 'ai-chat-interface',
-      title: 'AI Chat Interface',
-      subtitle: 'Conversational UI experiment',
-      year: '2025',
-      client: 'Personal',
-      type: 'Experiment',
-      tags: ['Next.js', 'OpenAI', 'Vercel AI SDK'],
-      role: 'Design & Development',
-      featured: false,
-      galleryImages: [],
-      galleryLayout: 'pattern',
-      galleryTheme: 'dark',
-    },
-    content: `Conversational UI with streaming responses, markdown rendering, and code highlighting.
-
-## Scope
-
-- Built a chat interface with real-time streaming responses
-- Implemented markdown rendering with syntax highlighting
-- Designed conversation threading and context management
-- Explored prompt engineering patterns for better UX`,
-  },
-  {
-    data: {
-      slug: 'design-token-generator',
-      title: 'Design Token Generator',
-      subtitle: 'Figma to Tailwind pipeline',
-      year: '2025',
-      client: 'Personal',
-      type: 'Tool',
-      tags: ['TypeScript', 'Figma API', 'Node.js'],
-      role: 'Development',
-      featured: false,
-      galleryImages: [],
-      galleryLayout: 'pattern',
-      galleryTheme: 'dark',
-    },
-    content: `Tool that extracts design tokens from Figma and generates Tailwind config automatically.
-
-## Scope
-
-- Built a CLI tool to extract colors, typography, and spacing from Figma files
-- Generates Tailwind CSS config with semantic naming
-- Supports theme variants and responsive tokens
-- Automates the design-to-code handoff process`,
-  },
-  {
-    data: {
-      slug: 'data-dashboard',
-      title: 'Data Dashboard',
-      subtitle: 'Analytics with natural language queries',
-      year: '2025',
-      client: 'Personal',
-      type: 'Experiment',
-      tags: ['React', 'D3.js', 'Claude API'],
-      role: 'Design & Development',
-      featured: false,
-      galleryImages: [],
-      galleryLayout: 'pattern',
-      galleryTheme: 'dark',
-    },
-    content: `Real-time analytics dashboard with interactive charts and natural language queries.
-
-## Scope
-
-- Designed interactive data visualizations with D3.js
-- Integrated Claude API for natural language data queries
-- Built real-time data streaming with WebSocket connections
-- Explored conversational analytics UX patterns`,
-  },
+const wireframeConfigs = [
+  { detail: 0, speed: 0.7 },
 ]
 
 export default function VibeCodeSection() {
@@ -115,47 +50,61 @@ export default function VibeCodeSection() {
 
   return (
     <section className="-mt-px border-t border-b border-border">
-      <div className="grid grid-cols-1 sm:grid-cols-4">
+      <div
+        className="grid grid-cols-1 bg-border sm:grid-cols-4"
+        style={{ gap: '1px' }}
+      >
         {/* Col 1: intro blurb */}
-        <div className="px-6 py-6 sm:border-r sm:border-border sm:px-8 sm:py-8 md:px-12 md:py-12">
+        <div className="bg-bg px-6 py-6 sm:px-8 sm:py-8 md:px-12 md:py-12">
           <p className="max-w-[30ch] text-[clamp(1.125rem,1.5vw,1.5rem)] leading-[1.4] font-light text-text-primary">
-            Things I build after hours — experiments, tools, and ideas that keep the craft sharp.
+            Other works — projects outside the featured selection.
           </p>
         </div>
 
-        {/* Cols 2-4: project list */}
-        <div className="col-span-1 flex flex-col sm:col-span-3">
-          {sideProjects.map((project, i) => (
-            <AnimatedSection key={project.data.slug} delay={i * 0.06}>
-              <div
-                onClick={() => setSelected(project)}
-                className={`group relative flex cursor-pointer flex-col justify-end overflow-hidden px-6 py-6 transition-colors duration-300 hover:bg-bg-secondary sm:px-8 sm:py-8 md:px-12 md:py-12${i < sideProjects.length - 1 ? ' border-b border-border' : ''}`}
+        {/* Cols 2-4: bento area (mobile stacks, desktop = 3-col checkerboard) */}
+        <div className="col-span-1 sm:col-span-3">
+          {/* Mobile: stacked square cards */}
+          <div
+            className="flex flex-col bg-border sm:hidden"
+            style={{ gap: '1px' }}
+          >
+            {sideProjects.map((project, i) => (
+              <AnimatedSection
+                key={project.data.slug}
+                delay={i * 0.06}
+                className="aspect-square bg-bg"
               >
-                <span className="text-[0.875rem] font-medium tracking-wide text-text-primary transition-colors duration-300 group-hover:text-accent">
-                  {project.data.title}
-                </span>
-                <span className="mt-1 text-[0.875rem] tracking-wide text-text-secondary">
-                  {project.content.split('\n')[0]}
-                </span>
-                <span className="mt-3 text-[0.75rem] tracking-wide text-text-tertiary">
-                  {project.data.tags.join(' · ')}
-                </span>
+                <ProjectCard work={project} onClick={() => setSelected(project)} />
+              </AnimatedSection>
+            ))}
+          </div>
 
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  className="absolute right-8 top-12 -translate-x-2 scale-100 text-accent opacity-0 transition-all duration-300 ease-out group-hover:translate-x-0 group-hover:scale-[4] group-hover:opacity-100 sm:right-12"
-                >
-                  <path d="M7 17L17 7" />
-                  <path d="M7 7h10v10" />
-                </svg>
+          {/* Desktop: 3-col 1×1 bento (auto-flow) */}
+          <div
+            className="hidden bg-border sm:grid sm:grid-cols-3"
+            style={{ gap: '1px' }}
+          >
+            {/* Project cells (4 × 1×1) */}
+            {sideProjects.map((project, i) => (
+              <AnimatedSection
+                key={project.data.slug}
+                delay={i * 0.06}
+                className="aspect-square bg-bg"
+              >
+                <ProjectCard work={project} onClick={() => setSelected(project)} />
+              </AnimatedSection>
+            ))}
+
+            {/* Decorative wireframe fillers (2 × 1×1) */}
+            {wireframeConfigs.map((config, i) => (
+              <div
+                key={`deco-${i}`}
+                className="aspect-square bg-bg"
+              >
+                <WireframePolyhedron detail={config.detail} speed={config.speed} />
               </div>
-            </AnimatedSection>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 
