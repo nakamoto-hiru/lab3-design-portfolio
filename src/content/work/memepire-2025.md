@@ -10,7 +10,7 @@ tags:
 role: TBD
 featured: true
 featuredOrder: 7
-galleryLayout: pattern
+galleryLayout: mobile
 galleryTheme: dark
 ---
 
