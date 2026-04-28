@@ -1,8 +1,9 @@
 import AnimatedSection from '@/components/common/AnimatedSection'
 import ProfileHero from '@/components/profile/ProfileHero'
+import TeamMembers from '@/components/profile/TeamMembers'
+import Services from '@/components/profile/Services'
+import Clients from '@/components/profile/Clients'
 import InfoPanel from '@/components/profile/InfoPanel'
-import Skills from '@/components/profile/Skills'
-import Experience from '@/components/profile/Experience'
 import { getProfile } from '@/content/loader'
 
 export default function ProfilePage() {
@@ -14,15 +15,18 @@ export default function ProfilePage() {
         <ProfileHero content={profile.content} />
       </AnimatedSection>
       <AnimatedSection delay={0.1}>
-        <InfoPanel data={profile.data} />
+        <TeamMembers />
       </AnimatedSection>
-      {profile.data.skills && (
-        <AnimatedSection delay={0.2}>
-          <Skills skills={profile.data.skills} />
+      <AnimatedSection delay={0.2}>
+        <Services services={profile.data.services} />
+      </AnimatedSection>
+      {profile.data.clients.length > 0 && (
+        <AnimatedSection delay={0.3}>
+          <Clients clients={profile.data.clients} />
         </AnimatedSection>
       )}
-      <AnimatedSection delay={0.3}>
-        <Experience experience={profile.data.experience} />
+      <AnimatedSection delay={0.4}>
+        <InfoPanel data={profile.data} />
       </AnimatedSection>
     </>
   )

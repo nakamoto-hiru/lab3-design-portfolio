@@ -7,7 +7,7 @@ import LiquidText from "@/components/common/LiquidText";
 
 const navLinks = [
   { label: "Projects", to: "/" },
-  { label: "Information", to: "/profile" },
+  { label: "Team", to: "/profile" },
 ];
 
 export default function Navbar() {
@@ -120,7 +120,7 @@ export default function Navbar() {
                   : "text-text-secondary",
               )}
             >
-              Information
+              Team
             </Link>
           </div>
 
