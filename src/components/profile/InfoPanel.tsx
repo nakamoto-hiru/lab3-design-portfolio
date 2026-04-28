@@ -6,23 +6,23 @@ interface InfoPanelProps {
 
 export default function InfoPanel({ data }: InfoPanelProps) {
   return (
-    <section className="border-t border-border py-12 sm:py-16 md:py-24">
+    <section className="border-t border-b border-border py-12 sm:py-16 md:py-24">
       <div className="grid grid-cols-1 sm:grid-cols-4">
         <div className="px-6 sm:px-8 md:px-12">
           <p className="text-[0.875rem] font-medium tracking-wide text-text-primary">
-            Information
+            Contact
           </p>
         </div>
 
         <div className="col-span-1 mt-4 px-6 sm:col-span-2 sm:mt-0 sm:px-8 md:px-12">
           <div className="space-y-6">
-            {/* Name + Title */}
+            {/* Studio name */}
             <div>
-              <p className="text-[0.875rem] tracking-wide text-text-primary">
+              <p className="text-[clamp(1.125rem,1.5vw,1.5rem)] leading-[1.4] font-light text-text-primary">
                 {data.name}
               </p>
               <p className="mt-1 text-[0.875rem] tracking-wide text-text-secondary">
-                {data.title}
+                {data.tagline}
               </p>
             </div>
 
@@ -57,26 +57,12 @@ export default function InfoPanel({ data }: InfoPanelProps) {
               </p>
             </div>
 
-            {/* Download Resume */}
-            <a style={{ marginTop: 48 }}
-              href="/resume.pdf"
-              download
-              className="group inline-flex items-center gap-3 border border-border px-6 py-4 text-[0.875rem] tracking-wide text-text-primary transition-colors duration-300 hover:border-accent"
-            >
-              <span>Download my resume</span>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                className="text-accent transition-transform duration-300 group-hover:translate-y-0.5"
-              >
-                <path d="M12 5v14" />
-                <path d="M19 12l-7 7-7-7" />
-              </svg>
-            </a>
+            {/* Availability */}
+            {data.availability_label && (
+              <p className="text-[0.875rem] tracking-wide text-accent">
+                {data.availability_label}
+              </p>
+            )}
           </div>
         </div>
       </div>

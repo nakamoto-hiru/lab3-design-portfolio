@@ -85,6 +85,4 @@ homeIntro:
   - "Focused on fintech, DeFi, and AI-native systems — crafting experiences that make complex data feel simple, intuitive, and actionable."
 ---
 
-Product Designer focused on trading systems and AI-native products, with full ownership from strategy to execution. I design at the system level — from research, data modeling, architecture logic, UX flows to actual implementation with AI tools.
-
-My work process evolved from applying AI for research and product logic to proactively building products end-to-end, significantly shortening the cycle from idea to production.
+L4D is a design studio focused on fintech, DeFi, and AI-native products. We work end-to-end — from research and data modeling to architecture, UX flows, and scalable UI systems. Our approach is built on lean thinking, strong logic, and precise execution. We don't just design — we build alongside the product, shortening the cycle from idea to production.
