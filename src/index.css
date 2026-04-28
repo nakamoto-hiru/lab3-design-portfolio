@@ -2,15 +2,15 @@
 
 /* ── Nimbus Sans L ─────────────────────────────────────── */
 @font-face {
-  font-family: 'Nimbus Sans L';
-  src: url('/fonts/NimbusSanL-Regu.ttf') format('truetype');
+  font-family: "Nimbus Sans L";
+  src: url("/fonts/NimbusSanL-Regu.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Nimbus Sans L';
-  src: url('/fonts/NimbusSanL-Bold.ttf') format('truetype');
+  font-family: "Nimbus Sans L";
+  src: url("/fonts/NimbusSanL-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -18,50 +18,57 @@
 
 /* ── Geist font ─────────────────────────────────────────── */
 @font-face {
-  font-family: 'Geist';
-  src: url('../node_modules/geist/dist/fonts/geist-sans/Geist-Thin.woff2') format('woff2');
+  font-family: "Geist";
+  src: url("../node_modules/geist/dist/fonts/geist-sans/Geist-Thin.woff2")
+    format("woff2");
   font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Geist';
-  src: url('../node_modules/geist/dist/fonts/geist-sans/Geist-Light.woff2') format('woff2');
+  font-family: "Geist";
+  src: url("../node_modules/geist/dist/fonts/geist-sans/Geist-Light.woff2")
+    format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Geist';
-  src: url('../node_modules/geist/dist/fonts/geist-sans/Geist-Regular.woff2') format('woff2');
+  font-family: "Geist";
+  src: url("../node_modules/geist/dist/fonts/geist-sans/Geist-Regular.woff2")
+    format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Geist';
-  src: url('../node_modules/geist/dist/fonts/geist-sans/Geist-Medium.woff2') format('woff2');
+  font-family: "Geist";
+  src: url("../node_modules/geist/dist/fonts/geist-sans/Geist-Medium.woff2")
+    format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Geist';
-  src: url('../node_modules/geist/dist/fonts/geist-sans/Geist-SemiBold.woff2') format('woff2');
+  font-family: "Geist";
+  src: url("../node_modules/geist/dist/fonts/geist-sans/Geist-SemiBold.woff2")
+    format("woff2");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Geist';
-  src: url('../node_modules/geist/dist/fonts/geist-sans/Geist-Bold.woff2') format('woff2');
+  font-family: "Geist";
+  src: url("../node_modules/geist/dist/fonts/geist-sans/Geist-Bold.woff2")
+    format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'Geist';
-  src: url('../node_modules/geist/dist/fonts/geist-sans/Geist-Black.woff2') format('woff2');
+  font-family: "Geist";
+  src: url("../node_modules/geist/dist/fonts/geist-sans/Geist-Black.woff2")
+    format("woff2");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -74,8 +81,8 @@
   --color-text-primary: #f0f0f0;
   --color-text-secondary: #808080;
   --color-text-tertiary: #666666;
-  --color-border: #181818;
-  --color-accent: #27bf00;
+  --color-border: #202020;
+  --color-accent: #c2ff33;
 
   --font-sans: "Archivo", ui-sans-serif, system-ui, sans-serif;
   --font-pixel: "Press Start 2P", monospace;
@@ -91,15 +98,21 @@
     scroll-behavior: smooth;
   }
 
-
   body {
     font-family: var(--font-sans);
-    font-feature-settings: 'ss01' on, 'ss03' on, 'ss04' on, 'ss05' on, 'ss06' on;
+    font-feature-settings:
+      "ss01" on,
+      "ss03" on,
+      "ss04" on,
+      "ss05" on,
+      "ss06" on;
     background-color: var(--color-bg);
     color: var(--color-text-primary);
     line-height: 1.5;
     margin: 0;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   a {
@@ -123,27 +136,52 @@
 
   /* CRT animations */
   @keyframes crt-noise {
-    0% { transform: translate(0, 0); }
-    20% { transform: translate(-2px, 1px); }
-    40% { transform: translate(1px, -2px); }
-    60% { transform: translate(2px, 2px); }
-    80% { transform: translate(-1px, -1px); }
-    100% { transform: translate(0, 0); }
+    0% {
+      transform: translate(0, 0);
+    }
+    20% {
+      transform: translate(-2px, 1px);
+    }
+    40% {
+      transform: translate(1px, -2px);
+    }
+    60% {
+      transform: translate(2px, 2px);
+    }
+    80% {
+      transform: translate(-1px, -1px);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
   }
 
   @keyframes crt-flicker {
-    0%, 100% { opacity: 1; }
-    30% { opacity: 0.85; }
-    50% { opacity: 0.6; }
-    70% { opacity: 0.9; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    30% {
+      opacity: 0.85;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    70% {
+      opacity: 0.9;
+    }
   }
 
   @keyframes crt-scanline {
-    0% { top: -2px; }
-    100% { top: 100%; }
+    0% {
+      top: -2px;
+    }
+    100% {
+      top: 100%;
+    }
   }
 
-/* Reduced motion */
+  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

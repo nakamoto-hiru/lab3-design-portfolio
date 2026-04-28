@@ -1,18 +1,23 @@
 ---
-name: Slug Macro
-title: Product Designer
+name: L4D Team
+title: L4D Team
+tagline: Elite Product Design Team
 location: Vietnam
 coordinates: "10.7769° N, 106.7009° E"
-email: slug@example.com
+email: l4d.design.team@gmail.com
+phone: "+84 866 206 999"
 availability: available
+availability_label: "Open to new projects & collaborations"
 socialLinks:
   - label: LinkedIn
     url: https://linkedin.com/in/slugmacro
 services:
-  - Trading Systems
-  - AI-Native Products
+  - Product Design
+  - UI/UX
   - Design Systems
-  - Product Strategy
+  - AI-Native Products
+  - Web3 / DeFi
+  - Fintech
 experience:
   - period: "03.2023 – Present"
     role: Product Designer
@@ -72,7 +77,12 @@ skills:
     - "✦ Wireframing"
     - "✦ Prototyping"
     - "✦ Data Visualization"
-homeIntro: "Hi, I'm Slug Macro — a Product Designer based at 10.7769° N, 106.7009° E, Vietnam. I design trading systems and AI-native products end-to-end, from research and data modeling to architecture, UX flows, and actual implementation with AI tools. My process sits at the overlap of design thinking and engineering logic — I don't just hand off specs, I build alongside the product. Currently focused on DeFi trading interfaces, prediction markets, and tools that make complex data feel intuitive."
+homeIntro:
+  - "Hi, we are L4D Team — an elite UI/UX design team."
+  - "We design digital products end-to-end — from research and data modeling to architecture, UX flows, and scalable UI systems."
+  - "Our approach is built on lean thinking, strong logic, and precise execution — where clarity meets structure, and ideas turn into real, high-performance products."
+  - "We don't just design. We build alongside the product."
+  - "Focused on fintech, DeFi, and AI-native systems — crafting experiences that make complex data feel simple, intuitive, and actionable."
 ---
 
 Product Designer focused on trading systems and AI-native products, with full ownership from strategy to execution. I design at the system level — from research, data modeling, architecture logic, UX flows to actual implementation with AI tools.

@@ -25,6 +25,7 @@ export const profileFrontmatterSchema = z.object({
   location: z.string(),
   coordinates: z.string(),
   email: z.string(),
+  phone: z.string().optional(),
   availability: z.enum(['available', 'unavailable', 'limited']),
   socialLinks: z.array(
     z.object({
@@ -56,7 +57,9 @@ export const profileFrontmatterSchema = z.object({
     tools: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
   }).optional(),
-  homeIntro: z.string().optional(),
+  homeIntro: z.array(z.string()).optional(),
+  tagline: z.string().optional(),
+  availability_label: z.string().optional(),
 })
 
 export type WorkFrontmatter = z.infer<typeof workFrontmatterSchema>
