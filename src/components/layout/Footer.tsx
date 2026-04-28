@@ -50,7 +50,7 @@ export default function Footer() {
           &copy; {new Date().getFullYear()}
         </p>
         <p className="text-[0.7rem] tracking-wide text-text-tertiary">
-          Slug Macro
+          L4D Team
         </p>
       </div>
     </footer>

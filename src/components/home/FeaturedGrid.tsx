@@ -13,7 +13,7 @@ import type { WorkFrontmatter } from '@/content/schema'
 // Row 2: [WM      ] [WM      ] [MN 2×2  ] [MN      ]
 // Row 3: [        ] [        ] [MN      ] [MN      ]
 // Row 4: [        ] [WP 2×2  ] [WP      ] [WMob    ]
-// Row 5: [W.Fund  ] [WP      ] [WP      ] [JoomlArt]
+// Row 5: [W.Fund  ] [WP      ] [WP      ] [MemePire]
 
 interface Placement {
   workIndex: number
@@ -22,7 +22,7 @@ interface Placement {
   span: number
 }
 
-// Sorted order: 0=WM, 1=WP, 2=MN, 3=WMob, 4=WF, 5=GR, 6=JA, 7=WM V.3
+// Sorted order: 0=WM, 1=WP, 2=MN, 3=WMob, 4=WF, 5=GR, 6=MemePire, 7=WM V.3
 const placements: Placement[] = [
   { workIndex: 0, col: 1, row: 1, span: 2 }, // Whales Market 50%
   { workIndex: 3, col: 3, row: 1, span: 1 }, // 25%

@@ -9,8 +9,7 @@ tags:
   - Web Design
   - Themes
 role: Lead UI/UX Designer
-featured: true
-featuredOrder: 7
+featured: false
 galleryLayout: pattern
 ---
 
