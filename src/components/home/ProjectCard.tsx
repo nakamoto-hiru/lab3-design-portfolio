@@ -1,6 +1,4 @@
-import { useRef } from 'react'
 import type { WorkFrontmatter } from '@/content/schema'
-import RippleImage, { type RippleImageHandle } from '@/components/common/RippleImage'
 
 interface ProjectCardProps {
   work: { data: WorkFrontmatter }
@@ -9,29 +7,19 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ work, onClick }: ProjectCardProps) {
   const { title, year, thumbnailImage } = work.data
-  const rippleRef = useRef<RippleImageHandle>(null)
 
   return (
     <button
       onClick={onClick}
-      onMouseEnter={(e) => {
-        rippleRef.current?.dropAt(e.clientX, e.clientY)
-        rippleRef.current?.setHover(true)
-      }}
-      onMouseMove={(e) => {
-        rippleRef.current?.dropAt(e.clientX, e.clientY)
-      }}
-      onMouseLeave={() => {
-        rippleRef.current?.setHover(false)
-      }}
       className="group relative flex h-full w-full cursor-pointer flex-col justify-end overflow-hidden bg-bg text-left"
     >
-      {/* Background image with ripple effect */}
       {thumbnailImage && (
         <div className="absolute inset-0 opacity-100 grayscale-0 md:grayscale md:opacity-50 transition-all duration-500 md:group-hover:opacity-100 md:group-hover:grayscale-0 md:group-hover:scale-[1.03]">
-          <RippleImage
-            ref={rippleRef}
+          <img
             src={thumbnailImage}
+            alt=""
+            loading="lazy"
+            decoding="async"
             className="absolute inset-0 h-full w-full object-cover"
           />
         </div>

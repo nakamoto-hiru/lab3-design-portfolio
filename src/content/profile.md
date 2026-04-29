@@ -83,4 +83,4 @@ homeIntro:
   - "Focused on Fintech, DeFi, and AI-native systems — turning complexity into intuitive, actionable experiences."
 ---
 
-L4D is a design studio focused on fintech, DeFi, and AI-native products. We work end-to-end — from research and data modeling to architecture, UX flows, and scalable UI systems. Our approach is built on lean thinking, strong logic, and precise execution. We don't just design — we build alongside the product, shortening the cycle from idea to production.
+L4D is a design studio focused on Fintech, DeFi, and AI-native products. We work end-to-end — from research and data modeling to architecture, UX flows, and scalable UI systems. Our approach is built on lean thinking, strong logic, and precise execution. We don't just design — we build alongside the product, shortening the cycle from idea to production.
