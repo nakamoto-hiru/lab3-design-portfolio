@@ -13,7 +13,6 @@ role: Product Design
 featured: true
 featuredOrder: 8
 galleryLayout: pattern
-thumbnailImage: "/images/whales-market/wm.png"
 heroImage: "/images/whales-market/hero.png"
 galleryImages:
   - "/images/whales-market/layout-1.png"

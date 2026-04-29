@@ -20,9 +20,16 @@ const workModules = import.meta.glob('./work/*.md', {
 })
 
 function getAllWork(): Array<{ data: WorkFrontmatter; content: string }> {
-  return Object.values(workModules).map((raw) =>
-    parseFrontmatter(raw as string, workFrontmatterSchema)
-  )
+  return Object.values(workModules).map((raw) => {
+    const parsed = parseFrontmatter(raw as string, workFrontmatterSchema)
+    if (!parsed.data.thumbnailImage) {
+      return {
+        ...parsed,
+        data: { ...parsed.data, thumbnailImage: `/images/${parsed.data.slug}/cover.png` },
+      }
+    }
+    return parsed
+  })
 }
 
 export function getFeaturedWork() {

@@ -130,7 +130,7 @@ export default function Navbar() {
               scrolled ? "py-6" : "py-12",
             )}
           >
-            <span>2026 Portfolio — V.2.1.0</span>
+            <span>2026 Portfolio — V.1.0.0</span>
           </div>
 
           <button

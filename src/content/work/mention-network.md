@@ -12,7 +12,6 @@ tags:
 role: Product Design
 featured: true
 featuredOrder: 3
-thumbnailImage: "/images/mention-network/mn-thumb.png"
 heroImage: "/images/mention-network/hero.png"
 galleryImages:
   - "/images/mention-network/layout-1.png"

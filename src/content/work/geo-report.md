@@ -12,7 +12,6 @@ tags:
 role: Product Design
 featured: true
 featuredOrder: 6
-thumbnailImage: "/images/geo-report/thumbnail.png"
 heroImage: "/images/geo-report/hero.png"
 galleryImages:
   - "/images/geo-report/gallery-1.png"

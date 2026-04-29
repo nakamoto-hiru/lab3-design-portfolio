@@ -13,7 +13,6 @@ tags:
 role: Product Design
 featured: true
 featuredOrder: 4
-thumbnailImage: "/images/whales-mobile/wm-thumb.png"
 galleryLayout: mobile
 galleryImages:
   - "/images/whales-mobile/layout-1.png"
