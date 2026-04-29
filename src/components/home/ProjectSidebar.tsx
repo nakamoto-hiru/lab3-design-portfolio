@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import LiquidText from '@/components/common/LiquidText'
@@ -61,6 +61,14 @@ export default function ProjectSidebar({ work, onClose, onPrev, onNext }: Projec
     return () => window.removeEventListener('keydown', handleKey)
   }, [onClose, onPrev, onNext])
 
+  // Scroll to top when project changes
+  const sidebarRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (work && sidebarRef.current) {
+      sidebarRef.current.scrollTo({ top: 0 })
+    }
+  }, [work?.data.slug])
+
   const sections = work ? parseMarkdown(work.content) : []
   const intro = sections.find((s) => !s.heading)
   const bodySections = sections.filter((s) => s.heading)
@@ -86,6 +94,7 @@ export default function ProjectSidebar({ work, onClose, onPrev, onNext }: Projec
 
             {/* Sidebar */}
             <motion.aside
+              ref={sidebarRef as React.RefObject<HTMLDivElement>}
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}

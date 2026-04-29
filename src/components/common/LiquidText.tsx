@@ -231,6 +231,14 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
     }
   }, [initGL, captureText])
 
+  // Re-capture text when children change
+  useEffect(() => {
+    if (glRef.current) {
+      setCanvasReady(false)
+      requestAnimationFrame(() => captureText())
+    }
+  }, [children, captureText])
+
   useEffect(() => { if (canvasReady) renderStatic() }, [canvasReady, renderStatic])
 
   const onEnter = useCallback(() => {

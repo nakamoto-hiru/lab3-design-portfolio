@@ -79,7 +79,7 @@ export default function Navbar() {
         <nav className="grid grid-cols-2 sm:grid-cols-4 [&>div]:transition-[padding] [&>div]:duration-300">
           <div
             className={cn(
-              "px-6 text-[0.875rem] leading-relaxed tracking-wide text-text-secondary sm:px-8 md:px-12",
+              "px-6 text-[0.875rem] leading-relaxed tracking-wide text-text-secondary whitespace-nowrap sm:px-8 md:px-12",
               scrolled ? "py-4 sm:py-5" : "py-4 sm:py-8 md:py-12",
             )}
           >

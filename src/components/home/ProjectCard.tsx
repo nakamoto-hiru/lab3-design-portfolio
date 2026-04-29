@@ -28,7 +28,7 @@ export default function ProjectCard({ work, onClick }: ProjectCardProps) {
     >
       {/* Background image with ripple effect */}
       {thumbnailImage && (
-        <div className="absolute inset-0 grayscale opacity-50 transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-[1.03]">
+        <div className="absolute inset-0 opacity-100 grayscale-0 md:grayscale md:opacity-50 transition-all duration-500 md:group-hover:opacity-100 md:group-hover:grayscale-0 md:group-hover:scale-[1.03]">
           <RippleImage
             ref={rippleRef}
             src={thumbnailImage}

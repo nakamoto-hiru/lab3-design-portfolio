@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollLock } from '@/hooks/useScrollLock'
 
@@ -9,6 +9,7 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ open, onClose, links }: MobileMenuProps) {
+  const location = useLocation()
   useScrollLock(open)
 
   return (
@@ -21,25 +22,22 @@ export default function MobileMenu({ open, onClose, links }: MobileMenuProps) {
           transition={{ duration: 0.25, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="fixed inset-0 z-[100] flex flex-col bg-bg"
         >
-          {/* Header */}
-          <div className="flex items-center justify-between px-6 py-6">
-            <span className="text-[0.875rem] tracking-wide text-text-primary">
-              Slug Macro
-            </span>
+          {/* Close */}
+          <div className="flex justify-end px-6 py-6">
             <button
               onClick={onClose}
-              className="flex h-8 w-8 items-center justify-center"
+              className="group flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-bg/80 backdrop-blur-sm text-text-tertiary transition-colors hover:text-text-primary cursor-pointer"
               aria-label="Close menu"
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="transition-transform duration-500 ease-out group-hover:rotate-[360deg]">
+                <path d="M18 6L6 18" />
+                <path d="M6 6l12 12" />
               </svg>
             </button>
           </div>
 
           {/* Nav links */}
-          <nav className="flex flex-1 flex-col justify-center gap-8 px-6">
+          <nav className="flex flex-1 flex-col items-center justify-center gap-8 -mt-16">
             {links.map((link, i) => (
               <motion.div
                 key={link.to}
@@ -50,7 +48,7 @@ export default function MobileMenu({ open, onClose, links }: MobileMenuProps) {
                 <Link
                   to={link.to}
                   onClick={onClose}
-                  className="text-[clamp(2rem,5vw,3rem)] font-light text-text-primary"
+                  className={`text-[clamp(2rem,5vw,3rem)] font-light ${location.pathname === link.to ? 'text-text-primary underline decoration-accent underline-offset-8 decoration-2' : 'text-text-secondary'}`}
                 >
                   {link.label}
                 </Link>
