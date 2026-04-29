@@ -2,7 +2,7 @@ const teamMembers = [
   {
     name: "Hiru Nakamoto",
     role: "Creative Director",
-    bio: "Sets the creative vision and design strategy for every project. Bridges business goals with user-centered thinking to shape products that resonate.",
+    bio: "Former JoomlArt co-founder & design lead with 20 years in digital product design. Sets the creative vision and design strategy for every project — bridging business goals with user-centered thinking to shape products that resonate.",
     image: "/images/team/nakamoto.png",
   },
   {
@@ -13,8 +13,8 @@ const teamMembers = [
   },
   {
     name: "Hazel Taylor",
-    role: "Senior UX Designer",
-    bio: "Drives user research, interaction flows, and usability testing. Turns complex data into clear, intuitive experiences across web and mobile platforms.",
+    role: "Graphics Designer",
+    bio: "A creative force with a sharp eye for aesthetics, color, and composition. Crafts visual identities, illustrations, and marketing collateral that translate brand stories into striking, memorable imagery.",
     image: "/images/team/hazel.png",
   },
   {

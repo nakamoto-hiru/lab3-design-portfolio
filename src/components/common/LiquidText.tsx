@@ -62,7 +62,10 @@ const FRAGMENT_SHADER = `
 
     float a = max(max(r, g), b);
 
-    gl_FragColor = vec4(r, g, b, a);
+    // Multiply output by strength so canvas is fully transparent when idle
+    // (DOM text underneath provides the base render). Canvas only contributes
+    // the ripple/RGB-split effect within the hover radius around the cursor.
+    gl_FragColor = vec4(r, g, b, a) * strength;
   }
 `
 
@@ -162,11 +165,6 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
     setCanvasReady(true)
   }, [])
 
-  const applyCrossfade = useCallback((hover: number) => {
-    if (textRef.current) textRef.current.style.opacity = String(1 - hover)
-    if (canvasRef.current) canvasRef.current.style.opacity = String(hover)
-  }, [])
-
   const renderStatic = useCallback(() => {
     const gl = glRef.current; const p = programRef.current; if (!gl || !p) return
     gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT)
@@ -175,8 +173,7 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
     gl.uniform1f(gl.getUniformLocation(p, 'u_hover'), 0)
     gl.uniform1f(gl.getUniformLocation(p, 'u_radius'), radius)
     gl.drawArrays(gl.TRIANGLES, 0, 6)
-    applyCrossfade(0)
-  }, [applyCrossfade])
+  }, [])
 
   const render = useCallback(() => {
     const gl = glRef.current; const p = programRef.current; if (!gl || !p) return
@@ -188,10 +185,9 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
     gl.uniform1f(gl.getUniformLocation(p, 'u_hover'), hoverRef.current)
     gl.uniform1f(gl.getUniformLocation(p, 'u_radius'), radius)
     gl.drawArrays(gl.TRIANGLES, 0, 6)
-    applyCrossfade(hoverRef.current)
     if (hoverTargetRef.current === 0 && hoverRef.current < 0.01) { hoverRef.current = 0; renderStatic(); return }
     rafRef.current = requestAnimationFrame(render)
-  }, [renderStatic, applyCrossfade])
+  }, [renderStatic])
 
   useEffect(() => {
     initGL(); startTimeRef.current = performance.now()
@@ -233,8 +229,8 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
 
   return (
     <div ref={containerRef} className="relative cursor-pointer overflow-visible" onMouseEnter={onEnter} onMouseLeave={onLeave} onMouseMove={onMove}>
-      <div ref={textRef} className={className} style={{ ...style, opacity: 1 }}>{children}</div>
-      <canvas ref={canvasRef} className="absolute top-0 left-0 pointer-events-none" style={{ opacity: 0 }} />
+      <div ref={textRef} className={className} style={style}>{children}</div>
+      <canvas ref={canvasRef} className="absolute top-0 left-0 pointer-events-none" />
     </div>
   )
 }
