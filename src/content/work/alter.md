@@ -11,8 +11,7 @@ tags:
   - DeFi
   - Meme
 role: Product Design
-featured: true
-featuredOrder: 8
+featured: false
 galleryLayout: pattern
 galleryTheme: dark
 galleryImages:

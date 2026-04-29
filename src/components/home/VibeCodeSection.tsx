@@ -3,35 +3,14 @@ import AnimatedSection from '@/components/common/AnimatedSection'
 import ProjectCard from './ProjectCard'
 import ProjectSidebar from './ProjectSidebar'
 import { WireframePolyhedron } from '@/components/common/WireframeShapes'
+import { getWorkBySlug } from '@/content/loader'
 import type { WorkFrontmatter } from '@/content/schema'
 
-// Placeholder skeletons — fill subtitle/client/type/tags/role/content later.
-function placeholder(slug: string, title: string, year: string): { data: WorkFrontmatter; content: string } {
-  return {
-    data: {
-      slug,
-      title,
-      subtitle: 'TBD',
-      year,
-      client: 'TBD',
-      type: 'TBD',
-      tags: [],
-      role: 'TBD',
-      featured: false,
-      galleryImages: [],
-      galleryLayout: 'pattern',
-      galleryTheme: 'dark',
-    },
-    content: 'TBD — short project intro.',
-  }
-}
+const SIDE_PROJECT_SLUGS = ['alter', 'gaimes', 'bink-ai', 'video-fi'] as const
 
-const sideProjects: Array<{ data: WorkFrontmatter; content: string }> = [
-  placeholder('alter-2025', 'Alter', '2025'),
-  placeholder('gaimes-2025', 'Gaimes', '2025'),
-  placeholder('bink-ai-2025', 'Bink AI', '2025'),
-  placeholder('video-fi-2024', 'Video.Fi', '2024'),
-]
+const sideProjects = SIDE_PROJECT_SLUGS.map((slug) => getWorkBySlug(slug)).filter(
+  (w): w is { data: WorkFrontmatter; content: string } => w !== null,
+)
 
 // Bento 3-col, all 1×1 squares — interlocked deco placement:
 //
