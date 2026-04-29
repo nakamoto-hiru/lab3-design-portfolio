@@ -31,17 +31,30 @@ const sideProjects: Array<{ data: WorkFrontmatter; content: string }> = [
   placeholder('gaimes-2025', 'Gaimes', '2025'),
   placeholder('bink-ai-2025', 'Bink AI', '2025'),
   placeholder('video-fi-2024', 'Video.Fi', '2024'),
-  placeholder('gm-ai-2025', 'GM.AI', '2025'),
 ]
 
-// Bento 3-col, all 1×1 squares — auto-flow:
+// Bento 3-col, all 1×1 squares — interlocked deco placement:
 //
 // Cols:     1          2          3
-// Row 1: [ Alter   ] [ Gaimes ] [ Bink AI ]
-// Row 2: [ Video.Fi ] [ GM.AI ] [  deco   ]
+// Row 1: [ Alter   ] [ deco-1 ] [ Bink AI ]
+// Row 2: [ Gaimes  ] [ Video.Fi ] [ deco-2 ]
+
+type DesktopCell =
+  | { kind: 'project'; project: (typeof sideProjects)[number] }
+  | { kind: 'deco'; config: { detail: number; speed: number } }
 
 const wireframeConfigs = [
   { detail: 0, speed: 0.7 },
+  { detail: 1, speed: 0.45 },
+]
+
+const desktopCells: DesktopCell[] = [
+  { kind: 'project', project: sideProjects[0] }, // Alter
+  { kind: 'deco', config: wireframeConfigs[0] },
+  { kind: 'project', project: sideProjects[2] }, // Bink AI
+  { kind: 'project', project: sideProjects[1] }, // Gaimes
+  { kind: 'project', project: sideProjects[3] }, // Video.Fi
+  { kind: 'deco', config: wireframeConfigs[1] },
 ]
 
 export default function VibeCodeSection() {
@@ -79,31 +92,32 @@ export default function VibeCodeSection() {
             ))}
           </div>
 
-          {/* Desktop: 3-col 1×1 bento (auto-flow) */}
+          {/* Desktop: 3-col 1×1 bento (explicit order — projects + deco interlocked) */}
           <div
             className="hidden bg-border sm:grid sm:grid-cols-3"
             style={{ gap: '1px' }}
           >
-            {/* Project cells (4 × 1×1) */}
-            {sideProjects.map((project, i) => (
-              <AnimatedSection
-                key={project.data.slug}
-                delay={i * 0.06}
-                className="aspect-square bg-bg"
-              >
-                <ProjectCard work={project} onClick={() => setSelected(project)} />
-              </AnimatedSection>
-            ))}
-
-            {/* Decorative wireframe fillers (2 × 1×1) */}
-            {wireframeConfigs.map((config, i) => (
-              <div
-                key={`deco-${i}`}
-                className="aspect-square bg-bg"
-              >
-                <WireframePolyhedron detail={config.detail} speed={config.speed} />
-              </div>
-            ))}
+            {desktopCells.map((cell, i) =>
+              cell.kind === 'project' ? (
+                <AnimatedSection
+                  key={cell.project.data.slug}
+                  delay={i * 0.06}
+                  className="aspect-square bg-bg"
+                >
+                  <ProjectCard
+                    work={cell.project}
+                    onClick={() => setSelected(cell.project)}
+                  />
+                </AnimatedSection>
+              ) : (
+                <div key={`deco-${i}`} className="aspect-square bg-bg">
+                  <WireframePolyhedron
+                    detail={cell.config.detail}
+                    speed={cell.config.speed}
+                  />
+                </div>
+              ),
+            )}
           </div>
         </div>
       </div>

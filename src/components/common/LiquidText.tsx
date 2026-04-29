@@ -120,28 +120,38 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
     gl.enable(gl.BLEND); gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)
   }, [])
 
-  const captureText = useCallback(() => {
+  const captureText = useCallback(async () => {
     const textEl = textRef.current; const glCanvas = canvasRef.current; const gl = glRef.current
     if (!textEl || !glCanvas || !gl) return
     const dpr = window.devicePixelRatio || 1
     const cs = getComputedStyle(textEl)
     const font = `${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`
     const fontSize = parseFloat(cs.fontSize)
-    const metrics = measureFontMetrics(font)
+    // Explicitly load this font/size — `document.fonts.ready` doesn't guarantee
+    // lazy-loaded Google Fonts (e.g., Bodoni Moda) are available at the requested size
+    try { await document.fonts.load(font) } catch { /* best effort */ }
     const rect = textEl.getBoundingClientRect()
+    // Bail if text hasn't been laid out yet — keep textRef visible until next observer tick
+    if (rect.width < 4 || rect.height < 4) { setCanvasReady(false); return }
     const lines: string[] = []; let cur = ''
     textEl.childNodes.forEach(n => { if (n.nodeName === 'BR') { lines.push(cur); cur = '' } else cur += n.textContent ?? '' })
     if (cur) lines.push(cur)
+    if (!lines.length || !lines.some(l => l.trim())) { setCanvasReady(false); return }
+    const metrics = measureFontMetrics(font)
     const computedLH = parseFloat(cs.lineHeight)
     const lh = isNaN(computedLH) ? fontSize * 1 : computedLH
     const padTop = metrics.ascent * 0.15  // Extra space for tall glyphs
     const totalH = padTop + lh * lines.length + metrics.descent
     // Extra padding so the liquid/RGB-split effect doesn't clip at edges
     const pad = Math.round(fontSize * 0.25)
+    // Half-leading offset: when CSS line-height < 1 (e.g. leading-[0.8]),
+    // glyphs render above the textEl box. Compensate so canvas glyphs land at
+    // the same vertical position as DOM glyphs — prevents jump on cross-fade.
+    const halfLeading = (lh - fontSize) / 2
     const w = Math.round(rect.width * dpr + pad * 2 * dpr); const h = Math.round(totalH * dpr + pad * 2 * dpr)
     glCanvas.width = w; glCanvas.height = h
     glCanvas.style.width = `${rect.width + pad * 2}px`; glCanvas.style.height = `${totalH + pad * 2}px`
-    glCanvas.style.left = `${-pad}px`; glCanvas.style.top = `${-pad}px`
+    glCanvas.style.left = `${-pad}px`; glCanvas.style.top = `${-pad - padTop + halfLeading}px`
     gl.viewport(0, 0, w, h)
     const off = document.createElement('canvas'); off.width = w; off.height = h
     const ctx = off.getContext('2d')!; ctx.scale(dpr, dpr); ctx.font = font; ctx.fillStyle = cs.color; ctx.textBaseline = 'top'
@@ -152,6 +162,11 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
     setCanvasReady(true)
   }, [])
 
+  const applyCrossfade = useCallback((hover: number) => {
+    if (textRef.current) textRef.current.style.opacity = String(1 - hover)
+    if (canvasRef.current) canvasRef.current.style.opacity = String(hover)
+  }, [])
+
   const renderStatic = useCallback(() => {
     const gl = glRef.current; const p = programRef.current; if (!gl || !p) return
     gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT)
@@ -160,7 +175,8 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
     gl.uniform1f(gl.getUniformLocation(p, 'u_hover'), 0)
     gl.uniform1f(gl.getUniformLocation(p, 'u_radius'), radius)
     gl.drawArrays(gl.TRIANGLES, 0, 6)
-  }, [])
+    applyCrossfade(0)
+  }, [applyCrossfade])
 
   const render = useCallback(() => {
     const gl = glRef.current; const p = programRef.current; if (!gl || !p) return
@@ -172,24 +188,43 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
     gl.uniform1f(gl.getUniformLocation(p, 'u_hover'), hoverRef.current)
     gl.uniform1f(gl.getUniformLocation(p, 'u_radius'), radius)
     gl.drawArrays(gl.TRIANGLES, 0, 6)
+    applyCrossfade(hoverRef.current)
     if (hoverTargetRef.current === 0 && hoverRef.current < 0.01) { hoverRef.current = 0; renderStatic(); return }
     rafRef.current = requestAnimationFrame(render)
-  }, [renderStatic])
+  }, [renderStatic, applyCrossfade])
 
   useEffect(() => {
     initGL(); startTimeRef.current = performance.now()
-    document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(() => captureText())))
-    const onResize = () => { setCanvasReady(false); requestAnimationFrame(() => captureText()) }
+    let scheduled = 0
+    const recapture = () => {
+      cancelAnimationFrame(scheduled)
+      scheduled = requestAnimationFrame(() => requestAnimationFrame(() => captureText()))
+    }
+    // Initial capture once fonts are ready
+    document.fonts.ready.then(recapture)
+    // Recapture when text element resizes (font loads, viewport changes affecting clamp())
+    const ro = textRef.current ? new ResizeObserver(recapture) : null
+    if (ro && textRef.current) ro.observe(textRef.current)
+    // Recapture if any new fonts finish loading after mount (Google Fonts lazy load)
+    const onFontLoadingDone = () => recapture()
+    document.fonts.addEventListener?.('loadingdone', onFontLoadingDone)
+    const onResize = () => { setCanvasReady(false); recapture() }
     window.addEventListener('resize', onResize)
-    return () => { cancelAnimationFrame(rafRef.current); window.removeEventListener('resize', onResize) }
+    return () => {
+      cancelAnimationFrame(rafRef.current); cancelAnimationFrame(scheduled)
+      window.removeEventListener('resize', onResize)
+      document.fonts.removeEventListener?.('loadingdone', onFontLoadingDone)
+      ro?.disconnect()
+    }
   }, [initGL, captureText])
 
   useEffect(() => { if (canvasReady) renderStatic() }, [canvasReady, renderStatic])
 
   const onEnter = useCallback(() => {
+    if (!canvasReady) return  // No texture captured yet — keep DOM-only static state
     hoverTargetRef.current = 1; cancelAnimationFrame(rafRef.current)
     rafRef.current = requestAnimationFrame(render)
-  }, [render])
+  }, [render, canvasReady])
   const onLeave = useCallback(() => { hoverTargetRef.current = 0 }, [])
   const onMove = useCallback((e: React.MouseEvent) => {
     const r = containerRef.current?.getBoundingClientRect(); if (!r) return
@@ -198,8 +233,8 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
 
   return (
     <div ref={containerRef} className="relative cursor-pointer overflow-visible" onMouseEnter={onEnter} onMouseLeave={onLeave} onMouseMove={onMove}>
-      <div ref={textRef} className={className} style={{ ...style, visibility: canvasReady ? 'hidden' : 'visible' }}>{children}</div>
-      <canvas ref={canvasRef} className="absolute top-0 left-0 pointer-events-none" />
+      <div ref={textRef} className={className} style={{ ...style, opacity: 1 }}>{children}</div>
+      <canvas ref={canvasRef} className="absolute top-0 left-0 pointer-events-none" style={{ opacity: 0 }} />
     </div>
   )
 }
