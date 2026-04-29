@@ -8,19 +8,19 @@ const teamMembers = [
   {
     name: "Slug Macro",
     role: "Lead Product Designer",
-    bio: "Owns the end-to-end product design process — from research and architecture to high-fidelity UI systems. Specializes in fintech and AI-native interfaces.",
+    bio: "Owns the end-to-end product design process — from user research and information architecture to high-fidelity UI systems and prototyping. Specializes in fintech, DeFi, and AI-native interfaces where complex data demands clarity.",
     image: "/images/team/slug.png",
   },
   {
     name: "Hazel Taylor",
     role: "Graphics Designer",
-    bio: "A creative force with a sharp eye for aesthetics, color, and composition. Crafts visual identities, illustrations, and marketing collateral that translate brand stories into striking, memorable imagery.",
+    bio: "A creative force with a sharp eye for aesthetics, color, and composition. Crafts visual identities, illustrations, and marketing collateral that translate brand stories into striking, memorable imagery across digital and print.",
     image: "/images/team/hazel.png",
   },
   {
     name: "Sophie Bulock",
-    role: "UI Designer",
-    bio: "Crafts pixel-perfect interfaces, component libraries, and visual systems. Ensures every detail aligns with the design language and brand identity.",
+    role: "UI/UX Designer",
+    bio: "Blends pixel-perfect interface craft with structured UX thinking — from user flows and wireframes to component libraries and design systems. Ensures every screen feels intuitive, consistent, and on-brand at any scale.",
     image: "/images/team/sophie.png",
   },
 ];
