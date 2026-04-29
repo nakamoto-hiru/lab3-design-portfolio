@@ -177,11 +177,58 @@ export default function LiquidText({ children, className, style, radius = 0.25 }
   }, [renderStatic])
 
   useEffect(() => {
-    initGL(); startTimeRef.current = performance.now()
-    document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(() => captureText())))
-    const onResize = () => { setCanvasReady(false); requestAnimationFrame(() => captureText()) }
+    let isInited = false
+
+    const init = () => {
+      if (isInited) return
+      initGL()
+      if (!glRef.current) return // initGL bailed (no canvas / no webgl context)
+      isInited = true
+      startTimeRef.current = performance.now()
+      document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(() => captureText())))
+    }
+
+    const release = () => {
+      if (!isInited) return
+      isInited = false
+      cancelAnimationFrame(rafRef.current)
+      const gl = glRef.current
+      if (gl) {
+        if (textureRef.current) gl.deleteTexture(textureRef.current)
+        if (programRef.current) gl.deleteProgram(programRef.current)
+        gl.getExtension('WEBGL_lose_context')?.loseContext()
+      }
+      glRef.current = null
+      programRef.current = null
+      textureRef.current = null
+      hoverRef.current = 0
+      hoverTargetRef.current = 0
+      setCanvasReady(false)
+    }
+
+    // Lazy init via IntersectionObserver — only consume a WebGL context when in viewport.
+    // rootMargin pre-warms before scroll arrives so there's no visible delay.
+    const target = containerRef.current
+    let observer: IntersectionObserver | null = null
+    if (target && typeof IntersectionObserver !== 'undefined') {
+      observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) init(); else release() },
+        { rootMargin: '200px' }
+      )
+      observer.observe(target)
+    } else {
+      // No observer support — fall back to eager init
+      init()
+    }
+
+    const onResize = () => { if (isInited) { setCanvasReady(false); requestAnimationFrame(() => captureText()) } }
     window.addEventListener('resize', onResize)
-    return () => { cancelAnimationFrame(rafRef.current); window.removeEventListener('resize', onResize) }
+
+    return () => {
+      observer?.disconnect()
+      window.removeEventListener('resize', onResize)
+      release()
+    }
   }, [initGL, captureText])
 
   useEffect(() => { if (canvasReady) renderStatic() }, [canvasReady, renderStatic])

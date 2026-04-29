@@ -79,17 +79,19 @@ interface Props {
 const RippleImage = forwardRef<RippleImageHandle, Props>(({ src, alt = '', className = '' }, ref) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const imgElRef = useRef<HTMLImageElement>(null)
   const glRef = useRef<WebGLRenderingContext | null>(null)
   const programRef = useRef<WebGLProgram | null>(null)
   const textureRef = useRef<WebGLTexture | null>(null)
   const rafRef = useRef(0)
+  const releaseTimerRef = useRef<number>(0)
   const startTimeRef = useRef(0)
   const dropTimeRef = useRef(0)
   const dropRef = useRef({ x: 0.5, y: 0.5 })
   const hoverRef = useRef(0)
   const hoverTargetRef = useRef(0)
+  const isInitedRef = useRef(false)
   const [ready, setReady] = useState(false)
-  const imgRef = useRef<HTMLImageElement | null>(null)
   const renderRef = useRef<() => void>(() => {})
 
   const initGL = useCallback(() => {
@@ -130,9 +132,9 @@ const RippleImage = forwardRef<RippleImageHandle, Props>(({ src, alt = '', class
 
   const uploadImage = useCallback(() => {
     const gl = glRef.current
-    const img = imgRef.current
+    const img = imgElRef.current
     const canvas = canvasRef.current
-    if (!gl || !img || !canvas) return
+    if (!gl || !img || !canvas || !img.complete || img.naturalWidth === 0) return
 
     const rect = containerRef.current?.getBoundingClientRect()
     if (!rect) return
@@ -185,12 +187,49 @@ const RippleImage = forwardRef<RippleImageHandle, Props>(({ src, alt = '', class
 
   renderRef.current = render
 
+  const ensureInited = useCallback(() => {
+    if (isInitedRef.current) return
+    initGL()
+    if (!glRef.current) return
+    isInitedRef.current = true
+    startTimeRef.current = performance.now()
+
+    const img = imgElRef.current
+    if (img && img.complete && img.naturalWidth > 0) {
+      uploadImage()
+    } else if (img) {
+      const onLoad = () => {
+        img.removeEventListener('load', onLoad)
+        if (isInitedRef.current) uploadImage()
+      }
+      img.addEventListener('load', onLoad)
+    }
+  }, [initGL, uploadImage])
+
+  const release = useCallback(() => {
+    if (!isInitedRef.current) return
+    isInitedRef.current = false
+    cancelAnimationFrame(rafRef.current)
+    const gl = glRef.current
+    if (gl) {
+      if (textureRef.current) gl.deleteTexture(textureRef.current)
+      if (programRef.current) gl.deleteProgram(programRef.current)
+      gl.getExtension('WEBGL_lose_context')?.loseContext()
+    }
+    glRef.current = null
+    programRef.current = null
+    textureRef.current = null
+    hoverRef.current = 0
+    hoverTargetRef.current = 0
+    setReady(false)
+  }, [])
+
   useImperativeHandle(ref, () => ({
     dropAt(x: number, y: number) {
+      ensureInited()
       const r = containerRef.current?.getBoundingClientRect()
       if (!r) return
       dropRef.current = { x: (x - r.left) / r.width, y: (y - r.top) / r.height }
-      // Only set dropTime on first call (when hover starts)
       if (dropTimeRef.current === 0) {
         dropTimeRef.current = (performance.now() - startTimeRef.current) / 1000
       }
@@ -198,40 +237,46 @@ const RippleImage = forwardRef<RippleImageHandle, Props>(({ src, alt = '', class
     setHover(hovering: boolean) {
       hoverTargetRef.current = hovering ? 1 : 0
       if (hovering) {
-        dropTimeRef.current = 0 // reset so next dropAt sets fresh time
+        ensureInited()
+        if (releaseTimerRef.current) {
+          clearTimeout(releaseTimerRef.current)
+          releaseTimerRef.current = 0
+        }
+        dropTimeRef.current = 0
         cancelAnimationFrame(rafRef.current)
         rafRef.current = requestAnimationFrame(renderRef.current)
+      } else {
+        if (releaseTimerRef.current) clearTimeout(releaseTimerRef.current)
+        releaseTimerRef.current = window.setTimeout(() => {
+          release()
+          releaseTimerRef.current = 0
+        }, 4000)
       }
     },
-  }), [])
+  }), [ensureInited, release])
 
   useEffect(() => {
-    initGL()
-    startTimeRef.current = performance.now()
-
-    const img = new Image()
-    img.crossOrigin = 'anonymous'
-    img.onload = () => {
-      imgRef.current = img
-      uploadImage()
-    }
-    img.src = src
-
-    const onResize = () => uploadImage()
+    const onResize = () => { if (isInitedRef.current) uploadImage() }
     window.addEventListener('resize', onResize)
     return () => {
-      cancelAnimationFrame(rafRef.current)
       window.removeEventListener('resize', onResize)
+      if (releaseTimerRef.current) {
+        clearTimeout(releaseTimerRef.current)
+        releaseTimerRef.current = 0
+      }
+      release()
     }
-  }, [src, initGL, uploadImage])
+  }, [release, uploadImage])
 
   return (
     <div ref={containerRef} className="absolute inset-0 pointer-events-none">
       <img
+        ref={imgElRef}
         src={src}
         alt={alt}
         className={className}
-        style={{ visibility: ready ? 'hidden' : 'visible' }}
+        loading="lazy"
+        decoding="async"
       />
       <canvas
         ref={canvasRef}

@@ -1,7 +1,7 @@
 ---
 name: L4D Team
 title: L4D Team
-tagline: Elite Product Design Team
+tagline: Product Design Team
 location: Vietnam
 coordinates: "10.7769° N, 106.7009° E"
 email: l4d.design.team@gmail.com
@@ -76,7 +76,7 @@ skills:
     - "✦ Prototyping"
     - "✦ Data Visualization"
 homeIntro:
-  - "Hi, we are L4D Team — an elite UI/UX design team."
+  - "Hi, we are L4D Team — High-performance product design team."
   - "We design digital products end-to-end — from research and data modeling to architecture, UX flows, and scalable UI systems."
   - "Our approach is built on lean thinking, strong logic, and precise execution — where clarity meets structure, and ideas turn into real, high-performance products."
   - "We don't just design. We build alongside the product."
