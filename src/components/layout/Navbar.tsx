@@ -49,7 +49,7 @@ export default function Navbar() {
         <div className="fixed top-0 left-0 z-0 w-full max-w-[var(--container-max)]">
           <div className="px-6 sm:px-8 md:px-12">
             <Link to="/" aria-label="Slug Macro — Home" className="block">
-              <motion.div className="pt-12" style={{ opacity: logoOpacity }}>
+              <motion.div className="pt-8 md:pt-12" style={{ opacity: logoOpacity }}>
                 <LiquidText
                   className="select-none text-text-primary leading-[0.8] font-bold cursor-pointer"
                   style={{
@@ -79,8 +79,8 @@ export default function Navbar() {
         <nav className="grid grid-cols-2 sm:grid-cols-4 [&>div]:transition-[padding] [&>div]:duration-300">
           <div
             className={cn(
-              "px-8 text-[0.875rem] leading-relaxed tracking-wide text-text-secondary sm:px-12",
-              scrolled ? "py-4 sm:py-6" : "py-4 sm:py-12",
+              "px-6 text-[0.875rem] leading-relaxed tracking-wide text-text-secondary sm:px-8 md:px-12",
+              scrolled ? "py-4 sm:py-5" : "py-4 sm:py-8 md:py-12",
             )}
           >
             Lean Design. Sharp Delivery.
@@ -88,8 +88,8 @@ export default function Navbar() {
 
           <div
             className={cn(
-              "hidden px-12 text-[0.875rem] leading-relaxed tracking-wide sm:block",
-              scrolled ? "py-6" : "py-12",
+              "hidden px-8 text-[0.875rem] leading-relaxed tracking-wide md:px-12 sm:block",
+              scrolled ? "py-5" : "py-8 md:py-12",
             )}
           >
             <Link
@@ -107,8 +107,8 @@ export default function Navbar() {
 
           <div
             className={cn(
-              "hidden px-12 text-[0.875rem] leading-relaxed tracking-wide sm:block",
-              scrolled ? "py-6" : "py-12",
+              "hidden px-8 text-[0.875rem] leading-relaxed tracking-wide md:px-12 sm:block",
+              scrolled ? "py-5" : "py-8 md:py-12",
             )}
           >
             <Link
@@ -130,7 +130,7 @@ export default function Navbar() {
               scrolled ? "py-6" : "py-12",
             )}
           >
-            <span>2026 Portfolio — V.1.0.0</span>
+            <span className="hidden lg:inline">2026 Portfolio — V.1.0.0</span>
           </div>
 
           <button

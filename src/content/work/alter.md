@@ -27,15 +27,12 @@ AI-powered meme coin launchpad where anyone can create a lifelike AI alter ego t
 
 ## Scope
 
-- Designed the full product funnel from homepage discovery to on-chain agent deployment
-- Built a 4-step token creation wizard: identity & avatar setup, token configuration, live AI preview chat, and on-chain deployment
-- Designed the agent detail page combining live AI video stream, real-time community chat, buy/sell trading panel, and bonding curve analytics
-- Created the discovery board with real-time streaming thumbnails, live price feeds, and agent rankings
-- Designed shareable agent cards for viral distribution across X and Telegram
-- Defined a high-contrast dark design system with crypto-native typography and green accent optimized for fast-paced trading interactions
+- End-to-end product funnel: discovery, 4-step token creation wizard, and on-chain agent deployment
+- Agent detail page with live AI stream, community chat, trading panel, and bonding curve analytics
+- Discovery board, shareable agent cards, and crypto-native dark design system
 
 ## Impact
 
-- Compressed the full token launch experience into a 4-step flow completable in under 5 minutes
-- Merged AI livestreaming, community chat, and DeFi bonding curve mechanics into a single cohesive interface
-- Designed viral sharing mechanics driving organic agent discovery across social platforms
+- Token launch compressed into a 4-step flow under 5 minutes
+- Unified AI livestreaming, chat, and DeFi mechanics in one interface
+- Viral sharing mechanics driving organic discovery across X and Telegram

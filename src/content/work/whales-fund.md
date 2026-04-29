@@ -21,23 +21,19 @@ galleryImages:
   - "/images/whales-fund/layout-5.png"
   - "/images/whales-fund/layout-6.png"
   - "/images/whales-fund/layout-7.png"
+  - "/images/whales-fund/layout-8.png"
 ---
 
 Private deal launchpad within the Whales ecosystem — connecting crypto VCs and syndicates with retail investors through KYB-verified profiles, a guided deal launch flow, and multi-chain payment with on-chain vesting.
 
 ## Scope
 
-- Designed two-sided architecture: VC/syndicate dashboard and investor discovery on a shared deal lifecycle
-- 5-step deal launch wizard — Deal Info → Pricing & Allocation → Payment → Vesting Schedule → Deploy
-- VC onboarding with KYB verification, profile, and Premium subscription tier
-- Investor browse experience with syndicate filtering by status, time, volume, and KOL
-- Deal detail and buy flow with multi-chain payment (Solana, Base, BNB Chain, Ethereum) and vesting preview
-- Post-sale lifecycle interfaces — Settle Phase, Distributing, Vesting, Deal-Ended
+- Two-sided architecture: VC/syndicate dashboard and investor discovery on a shared deal lifecycle
+- 5-step deal launch wizard with KYB verification, multi-chain payment, and vesting schedule
+- Deal detail, buy flow, and post-sale lifecycle interfaces (Settle → Distribute → Vest → End)
 
 ## Impact
 
-- Opened a new product vertical for the Whales ecosystem: primary issuance for crypto private rounds
-- Standardized syndicate-led deals with a consistent end-to-end lifecycle (Launch → Settle → Distribute → Vest → End)
-- Made VC track record discoverable through KYB-verified profiles surfacing key signals (deals, raised, xROI)
-- Reduced deal-launch friction for VCs with a guided wizard covering pricing, multi-chain payment, and vesting in one flow
-- Added a subscription monetization layer (Premium VC tier) to the platform
+- Opened primary issuance for crypto private rounds in the Whales ecosystem
+- Standardized syndicate-led deals with consistent end-to-end lifecycle
+- Reduced deal-launch friction with guided wizard and Premium VC tier

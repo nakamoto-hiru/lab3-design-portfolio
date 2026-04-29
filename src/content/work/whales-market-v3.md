@@ -28,18 +28,12 @@ Next-generation iteration of Whales Market — the Pre-Market trading platform r
 
 ## Scope
 
-- Redesigned Pre-Market discovery dashboard — Hot Pre-Markets, New Listing, Top Awaited TGE with chain segmentation (Solana, BNB, Layer 2, Meme, DeFi, Gaming)
-- Token detail page — price chart, tokenomics breakdown, partners/VCs, structured "How to Trade" onboarding, and contextual FAQ
-- Pro trading interface — dual-mode layout (orderbook + last trade), limit & market orders, position tracking, and side-by-side buy/sell
-- Native swap interface with chart, balance display, and trades history
-- Referral program with leaderboard, share/track flow, and earnings dashboard
-- Marketing landing with platform metrics and live-listing teasers
-- WhalesMobile integration and content layer (blog, glossary)
+- Pre-Market discovery dashboard with TGE listings, chain segmentation, and token detail pages
+- Pro trading interface with dual-mode layout, native swap, and referral program
+- Marketing landing, WhalesMobile integration, and content layer (blog, glossary)
 
 ## Impact
 
-- 225M+ pre-market volume, 34M+ users, 168 tokens settled across 24 supported blockchains
-- Unified trading, discovery, swap, and referral into one coherent product experience
-- Refreshed visual system tuned for high information density without losing clarity
-- Reduced learning curve for new traders with structured onboarding (How to Trade, FAQ, glossary) on each token page
-- Surfaced credibility signals (tokenomics, VCs, partners) to support investment decisions on pre-listed assets
+- 225M+ pre-market volume, 34M+ users, 168 tokens across 24 blockchains
+- Unified trading, discovery, swap, and referral in one product experience
+- Reduced learning curve with structured onboarding and credibility signals per token

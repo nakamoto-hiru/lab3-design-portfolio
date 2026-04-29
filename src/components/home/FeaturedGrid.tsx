@@ -70,6 +70,23 @@ export default function FeaturedGrid({ work }: FeaturedGridProps) {
   const [selected, setSelected] = useState<{ data: WorkFrontmatter; content: string } | null>(null)
   const close = useCallback(() => setSelected(null), [])
 
+  // Build ordered list from placements for prev/next navigation
+  const orderedWork = placements.map((p) => work[p.workIndex]).filter(Boolean)
+
+  const navigatePrev = useCallback(() => {
+    if (!selected) return
+    const idx = orderedWork.findIndex((w) => w.data.slug === selected.data.slug)
+    const prev = idx > 0 ? orderedWork[idx - 1] : orderedWork[orderedWork.length - 1]
+    setSelected(prev)
+  }, [selected, orderedWork])
+
+  const navigateNext = useCallback(() => {
+    if (!selected) return
+    const idx = orderedWork.findIndex((w) => w.data.slug === selected.data.slug)
+    const next = idx < orderedWork.length - 1 ? orderedWork[idx + 1] : orderedWork[0]
+    setSelected(next)
+  }, [selected, orderedWork])
+
   return (
     <section id="featured-work">
       {/* Mobile: simple stacked list */}
@@ -135,7 +152,7 @@ export default function FeaturedGrid({ work }: FeaturedGridProps) {
         })}
       </div>
 
-      <ProjectSidebar work={selected} onClose={close} />
+      <ProjectSidebar work={selected} onClose={close} onPrev={navigatePrev} onNext={navigateNext} />
     </section>
   )
 }

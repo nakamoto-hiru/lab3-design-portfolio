@@ -29,15 +29,12 @@ Advanced Trading Platform for Pre-Market trading, focused on pro traders and hig
 
 ## Scope
 
-- Defined the overall trading architecture: orderbook, position management, portfolio, P2P matching
-- Built Pre-Market settlement logic
-- Mobile adaptation for quick order placement and monitoring
+- Trading architecture: orderbook, position management, portfolio, P2P matching
+- Pre-Market settlement logic and mobile adaptation
 - Standardized design system for trading components
 
 ## Impact
 
-- $339M+ total Pre-Market Volume
-- 326K+ users on the platform
-- 369+ tokens settled across 26 blockchain ecosystems
-- Handled multi-chain settlement complexity and matching logic in real-time environments
-- Designed for pro traders and high-frequency users in volatile markets
+- $339M+ Pre-Market Volume, 326K+ users
+- 369+ tokens across 26 blockchain ecosystems
+- Multi-chain settlement in real-time volatile markets

@@ -1,24 +1,24 @@
 const teamMembers = [
   {
-    name: "Hiru Nakamoto",
+    name: "Hieu Nguyen",
     role: "Creative Director",
     bio: "Former JoomlArt co-founder & design lead with 20 years in digital product design. Sets the creative vision and design strategy for every project — bridging business goals with user-centered thinking to shape products that resonate.",
     image: "/images/team/nakamoto.png",
   },
   {
-    name: "Slug Macro",
+    name: "Duc Le",
     role: "Lead Product Designer",
     bio: "Owns the end-to-end product design process — from user research and information architecture to high-fidelity UI systems and prototyping. Specializes in fintech, DeFi, and AI-native interfaces where complex data demands clarity.",
     image: "/images/team/slug.png",
   },
   {
-    name: "Hazel Taylor",
+    name: "Hien Nguyen",
     role: "Graphics Designer",
     bio: "A creative force with a sharp eye for aesthetics, color, and composition. Crafts visual identities, illustrations, and marketing collateral that translate brand stories into striking, memorable imagery across digital and print.",
     image: "/images/team/hazel.png",
   },
   {
-    name: "Sophie Bulock",
+    name: "Xuan Nguyen",
     role: "UI/UX Designer",
     bio: "Blends pixel-perfect interface craft with structured UX thinking — from user flows and wireframes to component libraries and design systems. Ensures every screen feels intuitive, consistent, and on-brand at any scale.",
     image: "/images/team/sophie.png",
@@ -36,7 +36,7 @@ export default function TeamMembers() {
         </div>
 
         <div className="col-span-1 mt-4 px-6 sm:col-span-3 sm:mt-0 sm:px-8 md:px-12">
-          <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-4 sm:gap-x-8">
+          <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 sm:gap-x-8">
             {teamMembers.map((member) => (
               <div key={member.name} className="group flex flex-col">
                 <div className="aspect-square w-full overflow-hidden bg-white">

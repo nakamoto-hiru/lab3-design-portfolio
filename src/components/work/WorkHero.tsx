@@ -16,7 +16,7 @@ export default function WorkHero({ data, content }: WorkHeroProps) {
   return (
     <>
       {/* Text hero — same spacing as home hero */}
-      <section className="pt-16 pb-16 md:pt-24 md:pb-24">
+      <section className="pt-10 pb-10 sm:pt-14 sm:pb-14 md:pt-20 md:pb-20 lg:pt-24 lg:pb-24">
         <Container>
           {/* Title */}
           <h1 className="text-[clamp(2.5rem,5vw,5rem)] leading-[1.1] font-semibold tracking-[-0.03em] text-text-primary">

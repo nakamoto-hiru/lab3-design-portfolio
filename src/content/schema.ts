@@ -15,6 +15,8 @@ export const workFrontmatterSchema = z.object({
   heroImage: z.string().optional(),
   galleryImages: z.array(z.string()).default([]),
   galleryLayout: z.enum(['pattern', 'full', 'mobile']).default('pattern'),
+  galleryRowPattern: z.array(z.number()).optional(),
+  galleryMobileIndices: z.array(z.number()).optional(),
   galleryTheme: z.enum(['dark', 'light']).default('dark'),
   externalUrl: z.string().optional(),
 })

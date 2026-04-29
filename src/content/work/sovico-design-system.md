@@ -17,13 +17,11 @@ Built a comprehensive design system for Sovico Group's product ecosystem, ensuri
 
 ## Scope
 
-- Designed and built a unified design system for Sovico Group's digital products
-- Created component library covering forms, data tables, navigation, and dashboards
-- Established design tokens for color, typography, spacing, and elevation
-- Documented usage guidelines and interaction patterns for cross-team adoption
+- Unified design system: component library, design tokens, usage guidelines
+- Coverage across forms, data tables, navigation, and dashboards
+- Cross-team documentation for adoption
 
 ## Impact
 
-- Unified visual language across OneTarget and internal enterprise tools
-- Reduced design-to-dev handoff friction with standardized components
-- Accelerated new feature delivery through reusable patterns
+- Unified visual language across OneTarget and internal tools
+- Reduced design-to-dev friction, accelerated feature delivery

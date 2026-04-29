@@ -10,7 +10,7 @@ function BrowserFrame({ src, alt, theme = 'dark' }: { src: string; alt: string; 
   const bar = theme === 'light' ? 'bg-[#f0f0f0]' : 'bg-[#2a2a2a]'
 
   return (
-    <div className={`rounded-2xl ${bg} p-6 sm:p-12 md:p-24`}>
+    <div className={`rounded-2xl ${bg} p-6 sm:p-10 md:p-16`}>
       {/* Browser window */}
       <div className="overflow-hidden rounded-xl">
         {/* Title bar */}
@@ -35,7 +35,7 @@ function MobileFrame({ src, alt, theme = 'dark' }: { src: string; alt: string; t
   const bg = theme === 'light' ? 'bg-[#e8e8e8]' : 'bg-[#1a1a1a]'
 
   return (
-    <div className={`flex aspect-[5/8] items-center justify-center rounded-2xl ${bg} p-8 sm:p-12`}>
+    <div className={`flex aspect-[5/8] items-center justify-center rounded-2xl ${bg} p-6 sm:p-10`}>
       {/* Phone bezel */}
       <div className="w-full max-w-[280px] overflow-hidden rounded-[2rem] bg-black p-2 shadow-2xl ring-1 ring-white/10">
         {/* Notch */}
@@ -77,6 +77,54 @@ export default function WorkGallery({ data }: WorkGalleryProps) {
   }
 
   if (data.galleryLayout === 'full') {
+    // If galleryRowPattern is defined, use it to group images into rows
+    if (data.galleryRowPattern && data.galleryRowPattern.length > 0) {
+      const mobileSet = new Set(data.galleryMobileIndices ?? [])
+      const rows: { src: string; idx: number }[][] = []
+      let idx = 0
+      for (const count of data.galleryRowPattern) {
+        const row: { src: string; idx: number }[] = []
+        for (let i = 0; i < count && idx < data.galleryImages.length; i++) {
+          row.push({ src: data.galleryImages[idx], idx })
+          idx += 1
+        }
+        rows.push(row)
+      }
+      while (idx < data.galleryImages.length) {
+        rows.push([{ src: data.galleryImages[idx], idx }])
+        idx += 1
+      }
+
+      return (
+        <section className="space-y-6">
+          <Container className="space-y-6">
+            {rows.map((row, ri) => {
+              const isMobileRow = row.some((item) => mobileSet.has(item.idx))
+              if (isMobileRow) {
+                return (
+                  <div key={ri} className="grid grid-cols-2 gap-6">
+                    {row.map((item, ci) => (
+                      <MobileFrame key={`${ri}-${ci}`} src={item.src} alt={`${data.title} gallery ${item.idx + 1}`} theme={data.galleryTheme} />
+                    ))}
+                  </div>
+                )
+              }
+              if (row.length === 1) {
+                return <BrowserFrame key={ri} src={row[0].src} alt={`${data.title} gallery ${row[0].idx + 1}`} theme={data.galleryTheme} />
+              }
+              return (
+                <div key={ri} className="grid grid-cols-2 gap-6">
+                  {row.map((item, ci) => (
+                    <img key={`${ri}-${ci}`} src={item.src} alt={`${data.title} gallery ${item.idx + 1}`} className="w-full rounded-2xl" loading="lazy" />
+                  ))}
+                </div>
+              )
+            })}
+          </Container>
+        </section>
+      )
+    }
+
     return (
       <section className="space-y-6">
         <Container className="space-y-6">

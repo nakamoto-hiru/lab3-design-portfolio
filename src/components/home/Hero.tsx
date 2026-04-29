@@ -6,8 +6,7 @@ export default function Hero() {
 
   return (
     <section
-      className="border-b border-border"
-      style={{ paddingTop: 144, paddingBottom: 144 }}
+      className="border-b border-border py-16 sm:py-24 md:py-28 lg:py-36"
     >
       <AnimatedSection>
         <div className="grid grid-cols-1 sm:grid-cols-4">

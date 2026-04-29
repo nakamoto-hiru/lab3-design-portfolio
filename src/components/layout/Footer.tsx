@@ -20,7 +20,7 @@ export default function Footer() {
         <AnimatedSection>
           <div
             ref={sectionRef as React.RefObject<HTMLDivElement>}
-            className="border-b border-border bg-bg px-6 py-24 sm:px-8 sm:py-36 md:px-12 md:py-48"
+            className="border-b border-border bg-bg px-6 py-24 sm:px-8 sm:py-32 md:px-12 md:py-40"
           >
             <motion.div style={{ y }}>
               <LiquidText

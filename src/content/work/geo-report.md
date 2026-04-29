@@ -14,20 +14,32 @@ featured: true
 featuredOrder: 6
 heroImage: "/images/geo-report/hero.png"
 galleryImages:
-  - "/images/geo-report/gallery-1.png"
-  - "/images/geo-report/gallery-2.png"
+  - "/images/geo-report/layout-1.png"
+  - "/images/geo-report/layout-2.png"
+  - "/images/geo-report/layout-3.png"
+  - "/images/geo-report/layout-4.png"
+  - "/images/geo-report/layout-5.png"
+  - "/images/geo-report/layout-6.png"
+  - "/images/geo-report/layout-7.png"
+  - "/images/geo-report/layout-8.png"
+  - "/images/geo-report/layout-9.png"
+  - "/images/geo-report/layout-10.png"
+  - "/images/geo-report/layout-11.png"
+  - "/images/geo-report/layout-12.png"
+  - "/images/geo-report/layout-13.png"
 galleryLayout: full
+galleryRowPattern: [1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ---
 
 Tool for evaluating whether a website is "AI-friendly" — assessing how well content is structured for AI indexing and understanding. Built the evaluation framework at system level including scoring logic, criteria weighting, and standardized report structure that bridges traditional SEO with emerging AI optimization.
 
 ## Scope
 
-- Built AI-friendliness evaluation framework at system level (scoring logic, evaluation criteria, signal weighting)
-- Standardized report structure for SEO + AI indexing
-- UX focused on insight clarity rather than just metrics
+- AI-friendliness evaluation framework: scoring logic, criteria weighting, and signal analysis
+- Standardized report structure bridging SEO and AI indexing
+- UX focused on insight clarity over raw metrics
 
 ## Impact
 
-- Established systematic approach to evaluating AI-friendliness across multiple dimensions
-- Created actionable audit reports that bridge traditional SEO with AI optimization
+- Systematic approach to evaluating AI-friendliness across multiple dimensions
+- Actionable audit reports bridging traditional SEO with AI optimization

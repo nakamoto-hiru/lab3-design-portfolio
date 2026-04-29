@@ -28,22 +28,20 @@ galleryImages:
   - "/images/memepire/layout-8.png"
   - "/images/memepire/layout-9.png"
   - "/images/memepire/layout-10.png"
+  - "/images/memepire/layout-11.png"
+  - "/images/memepire/layout-12.png"
 ---
 
 Mobile-first meme coin trading app built for Solana — giving retail traders the same edge as whales through Smart Money signals, one-tap copy trading, and real-time token discovery. Designed the full product experience from signal tracking and automated copy trade bots to token deep-dives, portfolio management, and transaction flows.
 
 ## Scope
 
-- Designed the Smart Money feed — real-time signal tracking showing which tokens whales are buying, with flow volume and holder count across all chains and market caps
-- Built the Copy Trade system: leaderboard ranking by PnL and win rate, trader profile drill-down with per-token breakdown, and a bot management interface to run, pause, and stop automated strategies
-- Designed the Token Detail page combining live price chart, market data, user balance, Smart Money activity, and one-tap buy/sell execution
-- Created the Discover tab with trending token feed, watchlist, and CA/ticker search for fast alpha hunting
-- Designed the Assets view for full portfolio tracking with holdings breakdown and send/receive flows
-- Built the transaction Review Order screen with slippage control, fee breakdown, and Solana network confirmation
-- Designed a multi-category notification system covering Smart Money alerts, copy trade executions, price alerts, and system events
+- Smart Money feed, Copy Trade system with bot management, and Token Detail with one-tap execution
+- Discover tab, portfolio tracking, transaction flows with slippage control
+- Multi-category notification system for alerts and trade executions
 
 ## Impact
 
-- Compressed the full meme coin alpha-to-trade flow into a single mobile experience optimized for speed and one-handed use
-- Copy trade bot management reduced manual trade monitoring to zero — users set it and let strategies run autonomously
-- Smart Money signal feed surfaces whale activity in real time, giving retail traders institutional-grade market intelligence on mobile
+- Full meme coin alpha-to-trade flow in a single mobile experience
+- Copy trade bots reduced manual monitoring to zero
+- Real-time whale signals giving retail traders institutional-grade intelligence
